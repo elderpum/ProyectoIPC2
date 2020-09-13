@@ -1,3 +1,5 @@
+create database IPC2_2S2020
+
 use IPC2_2S2020
 
 create table Usuario(
@@ -5,9 +7,9 @@ create table Usuario(
 	Nombre varchar(50),
 	Apellido varchar(50),
 	NombreUser varchar(25),
-	Contraseña varchar(25),
+	ContraseÃ±a varchar(25),
 	FechaNac date,
-	País varchar(25),
+	PaÃ­s varchar(25),
 	Correo varchar(35),
 	primary key (ID_Usuario)
 );
