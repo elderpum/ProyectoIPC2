@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IPC2_2S2020ModelStoreContainer" CdmEntityContainer="IPC2_2S2020Entities">
+    <EntitySetMapping Name="Ficha">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.Ficha">
+        <MappingFragment StoreEntitySet="Ficha">
+          <ScalarProperty Name="ID_Ficha" ColumnName="ID_Ficha" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Fila" ColumnName="Fila" />
+          <ScalarProperty Name="Columna" ColumnName="Columna" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marcador">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.Marcador">
+        <MappingFragment StoreEntitySet="Marcador">
+          <ScalarProperty Name="ID_Marcador" ColumnName="ID_Marcador" />
+          <ScalarProperty Name="NoFichasNegras" ColumnName="NoFichasNegras" />
+          <ScalarProperty Name="NoFichasBlancas" ColumnName="NoFichasBlancas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partida">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.Partida">
+        <MappingFragment StoreEntitySet="Partida">
+          <ScalarProperty Name="ID_Partida" ColumnName="ID_Partida" />
+          <ScalarProperty Name="id_tipopartida" ColumnName="id_tipopartida" />
+          <ScalarProperty Name="id_tablero" ColumnName="id_tablero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sala">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.Sala">
+        <MappingFragment StoreEntitySet="Sala">
+          <ScalarProperty Name="ID_Sala" ColumnName="ID_Sala" />
+          <ScalarProperty Name="id_partida" ColumnName="id_partida" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tablero">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.Tablero">
+        <MappingFragment StoreEntitySet="Tablero">
+          <ScalarProperty Name="ID_Tablero" ColumnName="ID_Tablero" />
+          <ScalarProperty Name="id_ficha" ColumnName="id_ficha" />
+          <ScalarProperty Name="id_marcador" ColumnName="id_marcador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPartida">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.TipoPartida">
+        <MappingFragment StoreEntitySet="TipoPartida">
+          <ScalarProperty Name="ID_TipoPartida" ColumnName="ID_TipoPartida" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="NombreUser" ColumnName="NombreUser" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+          <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
+          <ScalarProperty Name="País" ColumnName="País" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

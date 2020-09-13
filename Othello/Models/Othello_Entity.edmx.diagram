@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a16b225194a44e7b89cd51e312c3738a" Name="Diagram1">
+        <EntityTypeShape EntityType="IPC2_2S2020Model.Ficha" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.Marcador" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.Partida" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.Sala" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.Tablero" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.TipoPartida" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.Usuario" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_ficha" ManuallyRouted="false" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_marcador" ManuallyRouted="false" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_partida" ManuallyRouted="false" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_tablero" ManuallyRouted="false" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_tipopartida" ManuallyRouted="false" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

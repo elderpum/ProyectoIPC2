@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IPC2_2S2020Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ficha">
+          <Key>
+            <PropertyRef Name="ID_Ficha" />
+          </Key>
+          <Property Name="ID_Ficha" Type="int" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="20" />
+          <Property Name="Fila" Type="varchar" MaxLength="5" />
+          <Property Name="Columna" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Marcador">
+          <Key>
+            <PropertyRef Name="ID_Marcador" />
+          </Key>
+          <Property Name="ID_Marcador" Type="int" Nullable="false" />
+          <Property Name="NoFichasNegras" Type="int" />
+          <Property Name="NoFichasBlancas" Type="int" />
+        </EntityType>
+        <EntityType Name="Partida">
+          <Key>
+            <PropertyRef Name="ID_Partida" />
+          </Key>
+          <Property Name="ID_Partida" Type="int" Nullable="false" />
+          <Property Name="id_tipopartida" Type="int" />
+          <Property Name="id_tablero" Type="int" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="ID_Sala" />
+          </Key>
+          <Property Name="ID_Sala" Type="int" Nullable="false" />
+          <Property Name="id_partida" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Tablero">
+          <Key>
+            <PropertyRef Name="ID_Tablero" />
+          </Key>
+          <Property Name="ID_Tablero" Type="int" Nullable="false" />
+          <Property Name="id_ficha" Type="int" />
+          <Property Name="id_marcador" Type="int" />
+        </EntityType>
+        <EntityType Name="TipoPartida">
+          <Key>
+            <PropertyRef Name="ID_TipoPartida" />
+          </Key>
+          <Property Name="ID_TipoPartida" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="NombreUser" Type="varchar" MaxLength="25" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="25" />
+          <Property Name="FechaNac" Type="date" />
+          <Property Name="País" Type="varchar" MaxLength="25" />
+          <Property Name="Correo" Type="varchar" MaxLength="35" />
+        </EntityType>
+        <Association Name="fk_ficha">
+          <End Role="Ficha" Type="Self.Ficha" Multiplicity="0..1" />
+          <End Role="Tablero" Type="Self.Tablero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ficha">
+              <PropertyRef Name="ID_Ficha" />
+            </Principal>
+            <Dependent Role="Tablero">
+              <PropertyRef Name="id_ficha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_marcador">
+          <End Role="Marcador" Type="Self.Marcador" Multiplicity="0..1" />
+          <End Role="Tablero" Type="Self.Tablero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcador">
+              <PropertyRef Name="ID_Marcador" />
+            </Principal>
+            <Dependent Role="Tablero">
+              <PropertyRef Name="id_marcador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_partida">
+          <End Role="Partida" Type="Self.Partida" Multiplicity="0..1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="ID_Partida" />
+            </Principal>
+            <Dependent Role="Sala">
+              <PropertyRef Name="id_partida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tablero">
+          <End Role="Tablero" Type="Self.Tablero" Multiplicity="0..1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tablero">
+              <PropertyRef Name="ID_Tablero" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="id_tablero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tipopartida">
+          <End Role="TipoPartida" Type="Self.TipoPartida" Multiplicity="0..1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPartida">
+              <PropertyRef Name="ID_TipoPartida" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="id_tipopartida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Sala">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IPC2_2S2020ModelStoreContainer">
+          <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marcador" EntityType="Self.Marcador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tablero" EntityType="Self.Tablero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPartida" EntityType="Self.TipoPartida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_ficha" Association="Self.fk_ficha">
+            <End Role="Ficha" EntitySet="Ficha" />
+            <End Role="Tablero" EntitySet="Tablero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_marcador" Association="Self.fk_marcador">
+            <End Role="Marcador" EntitySet="Marcador" />
+            <End Role="Tablero" EntitySet="Tablero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_partida" Association="Self.fk_partida">
+            <End Role="Partida" EntitySet="Partida" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tablero" Association="Self.fk_tablero">
+            <End Role="Tablero" EntitySet="Tablero" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tipopartida" Association="Self.fk_tipopartida">
+            <End Role="TipoPartida" EntitySet="TipoPartida" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario" Association="Self.fk_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IPC2_2S2020Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ficha">
+          <Key>
+            <PropertyRef Name="ID_Ficha" />
+          </Key>
+          <Property Name="ID_Ficha" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fila" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Columna" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tablero" Relationship="Self.fk_ficha" FromRole="Ficha" ToRole="Tablero" />
+        </EntityType>
+        <EntityType Name="Marcador">
+          <Key>
+            <PropertyRef Name="ID_Marcador" />
+          </Key>
+          <Property Name="ID_Marcador" Type="Int32" Nullable="false" />
+          <Property Name="NoFichasNegras" Type="Int32" />
+          <Property Name="NoFichasBlancas" Type="Int32" />
+          <NavigationProperty Name="Tablero" Relationship="Self.fk_marcador" FromRole="Marcador" ToRole="Tablero" />
+        </EntityType>
+        <EntityType Name="Partida">
+          <Key>
+            <PropertyRef Name="ID_Partida" />
+          </Key>
+          <Property Name="ID_Partida" Type="Int32" Nullable="false" />
+          <Property Name="id_tipopartida" Type="Int32" />
+          <Property Name="id_tablero" Type="Int32" />
+          <NavigationProperty Name="Sala" Relationship="Self.fk_partida" FromRole="Partida" ToRole="Sala" />
+          <NavigationProperty Name="Tablero" Relationship="Self.fk_tablero" FromRole="Partida" ToRole="Tablero" />
+          <NavigationProperty Name="TipoPartida" Relationship="Self.fk_tipopartida" FromRole="Partida" ToRole="TipoPartida" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="ID_Sala" />
+          </Key>
+          <Property Name="ID_Sala" Type="Int32" Nullable="false" />
+          <Property Name="id_partida" Type="Int32" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="Partida" Relationship="Self.fk_partida" FromRole="Sala" ToRole="Partida" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_usuario" FromRole="Sala" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Tablero">
+          <Key>
+            <PropertyRef Name="ID_Tablero" />
+          </Key>
+          <Property Name="ID_Tablero" Type="Int32" Nullable="false" />
+          <Property Name="id_ficha" Type="Int32" />
+          <Property Name="id_marcador" Type="Int32" />
+          <NavigationProperty Name="Ficha" Relationship="Self.fk_ficha" FromRole="Tablero" ToRole="Ficha" />
+          <NavigationProperty Name="Marcador" Relationship="Self.fk_marcador" FromRole="Tablero" ToRole="Marcador" />
+          <NavigationProperty Name="Partida" Relationship="Self.fk_tablero" FromRole="Tablero" ToRole="Partida" />
+        </EntityType>
+        <EntityType Name="TipoPartida">
+          <Key>
+            <PropertyRef Name="ID_TipoPartida" />
+          </Key>
+          <Property Name="ID_TipoPartida" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Partida" Relationship="Self.fk_tipopartida" FromRole="TipoPartida" ToRole="Partida" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreUser" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNac" Type="DateTime" Precision="0" />
+          <Property Name="País" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sala" Relationship="Self.fk_usuario" FromRole="Usuario" ToRole="Sala" />
+        </EntityType>
+        <Association Name="fk_ficha">
+          <End Role="Ficha" Type="Self.Ficha" Multiplicity="0..1" />
+          <End Role="Tablero" Type="Self.Tablero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ficha">
+              <PropertyRef Name="ID_Ficha" />
+            </Principal>
+            <Dependent Role="Tablero">
+              <PropertyRef Name="id_ficha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_marcador">
+          <End Role="Marcador" Type="Self.Marcador" Multiplicity="0..1" />
+          <End Role="Tablero" Type="Self.Tablero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcador">
+              <PropertyRef Name="ID_Marcador" />
+            </Principal>
+            <Dependent Role="Tablero">
+              <PropertyRef Name="id_marcador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_partida">
+          <End Role="Partida" Type="Self.Partida" Multiplicity="0..1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="ID_Partida" />
+            </Principal>
+            <Dependent Role="Sala">
+              <PropertyRef Name="id_partida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tablero">
+          <End Role="Tablero" Type="Self.Tablero" Multiplicity="0..1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tablero">
+              <PropertyRef Name="ID_Tablero" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="id_tablero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tipopartida">
+          <End Role="TipoPartida" Type="Self.TipoPartida" Multiplicity="0..1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPartida">
+              <PropertyRef Name="ID_TipoPartida" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="id_tipopartida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Sala">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IPC2_2S2020Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ficha" EntityType="Self.Ficha" />
+          <EntitySet Name="Marcador" EntityType="Self.Marcador" />
+          <EntitySet Name="Partida" EntityType="Self.Partida" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" />
+          <EntitySet Name="Tablero" EntityType="Self.Tablero" />
+          <EntitySet Name="TipoPartida" EntityType="Self.TipoPartida" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="fk_ficha" Association="Self.fk_ficha">
+            <End Role="Ficha" EntitySet="Ficha" />
+            <End Role="Tablero" EntitySet="Tablero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_marcador" Association="Self.fk_marcador">
+            <End Role="Marcador" EntitySet="Marcador" />
+            <End Role="Tablero" EntitySet="Tablero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_partida" Association="Self.fk_partida">
+            <End Role="Partida" EntitySet="Partida" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tablero" Association="Self.fk_tablero">
+            <End Role="Tablero" EntitySet="Tablero" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tipopartida" Association="Self.fk_tipopartida">
+            <End Role="TipoPartida" EntitySet="TipoPartida" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario" Association="Self.fk_usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IPC2_2S2020ModelStoreContainer" CdmEntityContainer="IPC2_2S2020Entities">
+          <EntitySetMapping Name="Ficha">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.Ficha">
+              <MappingFragment StoreEntitySet="Ficha">
+                <ScalarProperty Name="ID_Ficha" ColumnName="ID_Ficha" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="Columna" ColumnName="Columna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marcador">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.Marcador">
+              <MappingFragment StoreEntitySet="Marcador">
+                <ScalarProperty Name="ID_Marcador" ColumnName="ID_Marcador" />
+                <ScalarProperty Name="NoFichasNegras" ColumnName="NoFichasNegras" />
+                <ScalarProperty Name="NoFichasBlancas" ColumnName="NoFichasBlancas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partida">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.Partida">
+              <MappingFragment StoreEntitySet="Partida">
+                <ScalarProperty Name="ID_Partida" ColumnName="ID_Partida" />
+                <ScalarProperty Name="id_tipopartida" ColumnName="id_tipopartida" />
+                <ScalarProperty Name="id_tablero" ColumnName="id_tablero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sala">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.Sala">
+              <MappingFragment StoreEntitySet="Sala">
+                <ScalarProperty Name="ID_Sala" ColumnName="ID_Sala" />
+                <ScalarProperty Name="id_partida" ColumnName="id_partida" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tablero">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.Tablero">
+              <MappingFragment StoreEntitySet="Tablero">
+                <ScalarProperty Name="ID_Tablero" ColumnName="ID_Tablero" />
+                <ScalarProperty Name="id_ficha" ColumnName="id_ficha" />
+                <ScalarProperty Name="id_marcador" ColumnName="id_marcador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPartida">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.TipoPartida">
+              <MappingFragment StoreEntitySet="TipoPartida">
+                <ScalarProperty Name="ID_TipoPartida" ColumnName="ID_TipoPartida" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="NombreUser" ColumnName="NombreUser" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

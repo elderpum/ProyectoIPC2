@@ -1,0 +1,60 @@
+﻿@model Othello.Models.Usuario
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Registro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginStyle.css" />
+</head>
+<body>
+    <section class="container-fluid bg">
+        <section class="row justify-content-center">
+            <section class="col-12 col-sm-6 col-md-3">
+                <form class="form-container" action="~/Login/Juego" method="post">
+                    <div class="form-group">
+                        <p class="h4">Othello Game</p>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.ID_Usuario, "", new { @class = "form-control", @type = "text", @placeholder = "ID de Usuario:" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.Nombre, "", new { @class = "form-control", @type = "text", @placeholder = "Nombres:" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.Apellido, "", new { @class = "form-control", @type = "text", @placeholder = "Apellido:" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.NombreUser, "", new { @class = "form-control", @type = "text", @placeholder = "Usuario:" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.Contraseña, "", new { @class = "form-control", @type = "password", @placeholder = "Contraseña:" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.FechaNac, "", new { @class = "form-control", @type = "date", @placeholder = "dd/mm/yyyy" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.País, "", new { @class = "form-control", @type = "text", @placeholder = "País:" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.Correo, "", new { @class = "form-control", @type = "email", @placeholder = "Correo:" })
+                    </div>
+                    <a href="~/Login/Index" class="btn btn-primary btn-block">Registrar</a>
+                    <a href="~/Usuarios/Registrar" class="btn btn-primary btn-block">Limpiar</a>
+                    <a href="~/Login/Index" class="btn btn-primary btn-block">Regresar</a>
+                </form>
+            </section>
+        </section>
+    </section>
+
+</body>
+</html>
