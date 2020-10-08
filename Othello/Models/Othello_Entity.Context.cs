@@ -32,5 +32,8 @@ namespace Othello.Models
         public virtual DbSet<Tablero> Tablero { get; set; }
         public virtual DbSet<TipoPartida> TipoPartida { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<TipoReporte> TipoReporte { get; set; }
+        public virtual DbSet<Torneo> Torneo { get; set; }
+        public virtual DbSet<Reporte> Reporte { get; set; }
     }
 }

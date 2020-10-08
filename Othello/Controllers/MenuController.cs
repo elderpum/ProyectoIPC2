@@ -9,10 +9,25 @@ namespace Othello.Controllers
     public class MenuController : Controller
     {
         // GET: Menu
-        [Authorize]
-        public ActionResult Index()
+        public ActionResult Inicio()
+        {
+
+            return View();
+        }
+
+        public ActionResult Info()
         {
             return View();
+        }
+
+        public ActionResult PartidaIA()
+        {
+            return Redirect("~/Partida/Sala1");
+        }
+
+        public ActionResult PartidaVS()
+        {
+            return Redirect("~/Partida/Sala2");
         }
     }
 }

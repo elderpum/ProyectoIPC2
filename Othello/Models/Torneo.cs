@@ -12,23 +12,19 @@ namespace Othello.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Partida
+    public partial class Torneo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Partida()
+        public Torneo()
         {
-            this.Sala = new HashSet<Sala>();
+            this.Partida = new HashSet<Partida>();
         }
     
-        public int ID_Partida { get; set; }
-        public Nullable<int> id_tipopartida { get; set; }
-        public Nullable<int> id_tablero { get; set; }
-        public Nullable<int> id_torneo { get; set; }
+        public int ID_Torneo { get; set; }
+        public string Nombre { get; set; }
+        public Nullable<int> CantidadJug { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sala> Sala { get; set; }
-        public virtual Tablero Tablero { get; set; }
-        public virtual TipoPartida TipoPartida { get; set; }
-        public virtual Torneo Torneo { get; set; }
+        public virtual ICollection<Partida> Partida { get; set; }
     }
 }

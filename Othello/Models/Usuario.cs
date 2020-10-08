@@ -11,37 +11,28 @@ namespace Othello.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
-    public class Usuario
+    
+    public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
             this.Sala = new HashSet<Sala>();
+            this.Reporte = new HashSet<Reporte>();
         }
-
-        [Required(ErrorMessage = "Este campo es requerido.")]
+    
         public int ID_Usuario { get; set; }
-        [Required(ErrorMessage = "Este campo es requerido.")]
         public string Nombre { get; set; }
-        [Required(ErrorMessage = "Este campo es requerido.")]
         public string Apellido { get; set; }
-        [DisplayName("Usuario")]
-        [Required(ErrorMessage = "Este campo es requerido.")]
         public string NombreUser { get; set; }
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Este campo es requerido.")]
         public string Contraseña { get; set; }
-        [Required(ErrorMessage = "Este campo es requerido.")]
         public Nullable<System.DateTime> FechaNac { get; set; }
-        [Required(ErrorMessage = "Este campo es requerido.")]
         public string País { get; set; }
-        [Required(ErrorMessage = "Este campo es requerido.")]
         public string Correo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sala> Sala { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reporte> Reporte { get; set; }
     }
 }

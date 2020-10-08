@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Información</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Menu.css"/>
+</head>
+<body>
+    <section class="container-fluid bg">
+        <section class="row justify-content-center">
+            <section class="col-10 col-sm-10 col-md-10">
+                <div class="form-group bg-transparent">
+                    <p class="h4 text-center">INFORMACIÓN DEL JUEGO</p>
+                </div>
+                <div class="col-10 col-sm-5 col-md-12 bg-dark border-danger">
+                    <p class="h5">¿Qué es Othello?</p>
+                    <p class="h6">Es un juego entre dos personas, que comparten 64 fichas iguales, de caras distintas que se van colocando por turnos en un tablero dividido en 64 escaques. Las caras de las fichas se distinguen por su color y cada jugador tiene asignado uno de esos colores, ganando quien tenga más fichas sobre el tablero al finalizar.</p>
+                </div>
+                <br />
+                <div class="col-12 col-sm-5 col-md-12 bg-dark border-white">
+                    <p class="h5">Información de la Aplicación</p>
+                    <p class="h6">La aplicación consta de un sistema de manejo de usuarios para que estos puedan jugar partidas, guardar y cargar partidas, así como el sistema de torneos diseñado para los jugadores. Existe un sistema de reportes para las estadísticas.</p>
+                </div>
+                <br />
+                <div class="col-12 col-sm-5 col-md-12 bg-dark border-white">
+                    <p class="h5">Reglas Básicas de Othello:</p>
+                    <p class="h6">
+                        En el Othello, al igual que en el reversí, se emplea un tablero de 8 filas por 8 columnas y 64 fichas idénticas, redondas, blancas por una cara y negras por la otra (u otros colores). Las casillas se denotan numerando las columnas, comendanzo por la esquina superior izquierda del tablero, con letras desde la A hasta la H, e igual con las filas, pero con números del uno al ocho. A un jugador se le asigna un color y se dice que lleva las fichas de ese color, lo mismo para el adversario con el otro color.
+                    </p>
+                    <p class="h6">
+                        El objetivo del juego es tener más fichas del propio color sobre el tablero al final de la partida. Se emplea u ntablero de 8 filas por 8 columnas y 64 fichas idénticas, redondas, blancas por una cara y negras por otra. Juegan dos jugadores, uno lleva las blancas y el otro las negras. De inicio se colocan cuatro fichas: una blanca en D4 y la otra en E5, mientras que las negras se coloca una en E4 y la otra en D5.
+                    </p>
+                    <p class="h6">
+                        Comienzan a mover las negras. Un movimiento consiste en colocar una ficha propia sobre el tablero de forma que "encierre" una o varias fichas contrarias. Las fichas encerradas son volteadas para mostrar el color propio.
+                    </p>
+                    <p class="h6">
+                        Es obligaorio voltear todas las fichas encerradas vertical, horizontal o diagonalmente entre la ficha que se coloca y las que ya estaban colocadas. Una vez volteadas las fichas, el turno pasa al contrario que procede de la misma forma con sus fichas. Si un jugador no tiene ninguna posibilidad de mover, el turno pasará al contrario. La partida termina cuando ninguno de los dos jugadores puede mover. Normalmente cuando el tablero está lleno o prácticamente lleno.
+                    </p>
+                    <p class="h6">
+                        Gana el jugador que acaba con más fichas propias sobre el tablero. Es posible el empate. ¡Suerte!
+                    </p>
+                </div>
+                <center>
+                    <a href="~/Menu/Inicio" class="btn btn-primary btn-block col-12 col-sm-6 col-md-3">Regresar</a>
+                </center>
+            </section>
+        </section>
+    </section>
+</body>
+</html>

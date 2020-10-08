@@ -18,6 +18,12 @@
         <AssociationConnector Association="IPC2_2S2020Model.fk_tablero" ManuallyRouted="false" />
         <AssociationConnector Association="IPC2_2S2020Model.fk_tipopartida" ManuallyRouted="false" />
         <AssociationConnector Association="IPC2_2S2020Model.fk_usuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.TipoReporte" Width="1.5" PointX="3.125" PointY="8.25" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.Torneo" Width="1.5" PointX="1.125" PointY="8.375" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_idTorneo" />
+        <EntityTypeShape EntityType="IPC2_2S2020Model.Reporte" Width="1.5" PointX="7.5" PointY="6.75" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_tiporeporte" />
+        <AssociationConnector Association="IPC2_2S2020Model.fk_U" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

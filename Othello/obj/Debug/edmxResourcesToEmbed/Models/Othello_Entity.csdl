@@ -29,6 +29,8 @@
     <NavigationProperty Name="Sala" Relationship="Self.fk_partida" FromRole="Partida" ToRole="Sala" />
     <NavigationProperty Name="Tablero" Relationship="Self.fk_tablero" FromRole="Partida" ToRole="Tablero" />
     <NavigationProperty Name="TipoPartida" Relationship="Self.fk_tipopartida" FromRole="Partida" ToRole="TipoPartida" />
+    <Property Name="id_torneo" Type="Int32" />
+    <NavigationProperty Name="Torneo" Relationship="IPC2_2S2020Model.fk_idTorneo" FromRole="Partida" ToRole="Torneo" />
   </EntityType>
   <EntityType Name="Sala">
     <Key>
@@ -39,6 +41,8 @@
     <Property Name="id_usuario" Type="Int32" />
     <NavigationProperty Name="Partida" Relationship="Self.fk_partida" FromRole="Sala" ToRole="Partida" />
     <NavigationProperty Name="Usuario" Relationship="Self.fk_usuario" FromRole="Sala" ToRole="Usuario" />
+    <Property Name="CantMovJ1" Type="Int32" />
+    <Property Name="CantMovJ2" Type="Int32" />
   </EntityType>
   <EntityType Name="Tablero">
     <Key>
@@ -73,6 +77,7 @@
     <Property Name="País" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="Correo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Sala" Relationship="Self.fk_usuario" FromRole="Usuario" ToRole="Sala" />
+    <NavigationProperty Name="Reporte" Relationship="IPC2_2S2020Model.fk_U" FromRole="Usuario" ToRole="Reporte" />
   </EntityType>
   <Association Name="fk_ficha">
     <End Role="Ficha" Type="Self.Ficha" Multiplicity="0..1" />
@@ -178,5 +183,84 @@
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Sala" EntitySet="Sala" />
     </AssociationSet>
+    <EntitySet Name="TipoReporte" EntityType="IPC2_2S2020Model.TipoReporte" />
+    <EntitySet Name="Torneo" EntityType="IPC2_2S2020Model.Torneo" />
+    <AssociationSet Name="fk_idTorneo" Association="IPC2_2S2020Model.fk_idTorneo">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <EntitySet Name="Reporte" EntityType="IPC2_2S2020Model.Reporte" />
+    <AssociationSet Name="fk_tiporeporte" Association="IPC2_2S2020Model.fk_tiporeporte">
+      <End Role="TipoReporte" EntitySet="TipoReporte" />
+      <End Role="Reporte" EntitySet="Reporte" />
+    </AssociationSet>
+    <AssociationSet Name="fk_U" Association="IPC2_2S2020Model.fk_U">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Reporte" EntitySet="Reporte" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="TipoReporte">
+    <Key>
+      <PropertyRef Name="ID_TipoReporte" />
+    </Key>
+    <Property Name="ID_TipoReporte" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Reporte" Relationship="IPC2_2S2020Model.fk_tiporeporte" FromRole="TipoReporte" ToRole="Reporte" />
+  </EntityType>
+  <EntityType Name="Torneo">
+    <Key>
+      <PropertyRef Name="ID_Torneo" />
+    </Key>
+    <Property Name="ID_Torneo" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CantidadJug" Type="Int32" />
+    <NavigationProperty Name="Partida" Relationship="IPC2_2S2020Model.fk_idTorneo" FromRole="Torneo" ToRole="Partida" />
+  </EntityType>
+  <Association Name="fk_idTorneo">
+    <End Type="IPC2_2S2020Model.Torneo" Role="Torneo" Multiplicity="0..1" />
+    <End Type="IPC2_2S2020Model.Partida" Role="Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="ID_Torneo" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="id_torneo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Reporte">
+    <Key>
+      <PropertyRef Name="ID_Reporte" />
+    </Key>
+    <Property Name="ID_Reporte" Type="Int32" Nullable="false" />
+    <Property Name="idUsuario" Type="Int32" />
+    <Property Name="idTipoReporte" Type="Int32" />
+    <NavigationProperty Name="TipoReporte" Relationship="IPC2_2S2020Model.fk_tiporeporte" FromRole="Reporte" ToRole="TipoReporte" />
+    <NavigationProperty Name="Usuario" Relationship="IPC2_2S2020Model.fk_U" FromRole="Reporte" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="fk_tiporeporte">
+    <End Type="IPC2_2S2020Model.TipoReporte" Role="TipoReporte" Multiplicity="0..1" />
+    <End Type="IPC2_2S2020Model.Reporte" Role="Reporte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoReporte">
+        <PropertyRef Name="ID_TipoReporte" />
+      </Principal>
+      <Dependent Role="Reporte">
+        <PropertyRef Name="idTipoReporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_U">
+    <End Type="IPC2_2S2020Model.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="IPC2_2S2020Model.Reporte" Role="Reporte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="ID_Usuario" />
+      </Principal>
+      <Dependent Role="Reporte">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

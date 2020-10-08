@@ -12,15 +12,13 @@ namespace Othello.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Sala
+    public partial class Reporte
     {
-        public int ID_Sala { get; set; }
-        public Nullable<int> id_partida { get; set; }
-        public Nullable<int> id_usuario { get; set; }
-        public Nullable<int> CantMovJ1 { get; set; }
-        public Nullable<int> CantMovJ2 { get; set; }
+        public int ID_Reporte { get; set; }
+        public Nullable<int> idUsuario { get; set; }
+        public Nullable<int> idTipoReporte { get; set; }
     
-        public virtual Partida Partida { get; set; }
+        public virtual TipoReporte TipoReporte { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

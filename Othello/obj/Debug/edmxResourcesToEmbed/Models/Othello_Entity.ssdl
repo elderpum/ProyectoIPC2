@@ -24,6 +24,15 @@
     <Property Name="ID_Partida" Type="int" Nullable="false" />
     <Property Name="id_tipopartida" Type="int" />
     <Property Name="id_tablero" Type="int" />
+    <Property Name="id_torneo" Type="int" />
+  </EntityType>
+  <EntityType Name="Reporte">
+    <Key>
+      <PropertyRef Name="ID_Reporte" />
+    </Key>
+    <Property Name="ID_Reporte" Type="int" Nullable="false" />
+    <Property Name="idUsuario" Type="int" />
+    <Property Name="idTipoReporte" Type="int" />
   </EntityType>
   <EntityType Name="Sala">
     <Key>
@@ -32,6 +41,8 @@
     <Property Name="ID_Sala" Type="int" Nullable="false" />
     <Property Name="id_partida" Type="int" />
     <Property Name="id_usuario" Type="int" />
+    <Property Name="CantMovJ1" Type="int" />
+    <Property Name="CantMovJ2" Type="int" />
   </EntityType>
   <EntityType Name="Tablero">
     <Key>
@@ -48,6 +59,22 @@
     <Property Name="ID_TipoPartida" Type="int" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="25" />
     <Property Name="Descripcion" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="TipoReporte">
+    <Key>
+      <PropertyRef Name="ID_TipoReporte" />
+    </Key>
+    <Property Name="ID_TipoReporte" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="25" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="35" />
+  </EntityType>
+  <EntityType Name="Torneo">
+    <Key>
+      <PropertyRef Name="ID_Torneo" />
+    </Key>
+    <Property Name="ID_Torneo" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="30" />
+    <Property Name="CantidadJug" Type="int" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
@@ -71,6 +98,18 @@
       </Principal>
       <Dependent Role="Tablero">
         <PropertyRef Name="id_ficha" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idTorneo">
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="0..1" />
+    <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="ID_Torneo" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="id_torneo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -122,6 +161,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_tiporeporte">
+    <End Role="TipoReporte" Type="Self.TipoReporte" Multiplicity="0..1" />
+    <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoReporte">
+        <PropertyRef Name="ID_TipoReporte" />
+      </Principal>
+      <Dependent Role="Reporte">
+        <PropertyRef Name="idTipoReporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_U">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="ID_Usuario" />
+      </Principal>
+      <Dependent Role="Reporte">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_usuario">
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
     <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
@@ -138,13 +201,20 @@
     <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Marcador" EntityType="Self.Marcador" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tablero" EntityType="Self.Tablero" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoPartida" EntityType="Self.TipoPartida" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoReporte" EntityType="Self.TipoReporte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_ficha" Association="Self.fk_ficha">
       <End Role="Ficha" EntitySet="Ficha" />
       <End Role="Tablero" EntitySet="Tablero" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idTorneo" Association="Self.fk_idTorneo">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="Partida" EntitySet="Partida" />
     </AssociationSet>
     <AssociationSet Name="fk_marcador" Association="Self.fk_marcador">
       <End Role="Marcador" EntitySet="Marcador" />
@@ -161,6 +231,14 @@
     <AssociationSet Name="fk_tipopartida" Association="Self.fk_tipopartida">
       <End Role="TipoPartida" EntitySet="TipoPartida" />
       <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tiporeporte" Association="Self.fk_tiporeporte">
+      <End Role="TipoReporte" EntitySet="TipoReporte" />
+      <End Role="Reporte" EntitySet="Reporte" />
+    </AssociationSet>
+    <AssociationSet Name="fk_U" Association="Self.fk_U">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Reporte" EntitySet="Reporte" />
     </AssociationSet>
     <AssociationSet Name="fk_usuario" Association="Self.fk_usuario">
       <End Role="Usuario" EntitySet="Usuario" />

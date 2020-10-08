@@ -1,0 +1,43 @@
+﻿@model Othello.Models.Usuario
+@{
+    Layout = null;
+    string usuario = ViewBag.usuarioLog;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Menú Principal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Menu.css" />
+</head>
+<body>
+    <section class="container-fluid bg">
+        <section class="row justify-content-center">
+            <section class="col-12 col-sm-6 col-md-3">
+                <div class="form-group">
+                    <p class="h4">Othello Game</p>
+                </div>
+                <div class="form-group dropleft">
+                    <p class="h3">Bienvenido Usuario: @usuario</p>
+                </div>
+                <div class="form-group">
+                    <right>
+                        <a href="~/Menu/Info" class="btn btn-primary btn-block">Información</a>
+                    </right>
+                </div>
+                <a href="~/Menu/PartidaIA" class="btn btn-primary btn-block">Partida vs IA</a>
+                <a href="~/Menu/PartidaVS" class="btn btn-primary btn-block">Versus</a>
+                <a href="~/Partida/Torneo" class="btn btn-primary btn-block">Torneo</a>
+                <a href="~/Menu/Reporte" class="btn btn-primary btn-block">Reporte</a>
+            </section>
+        </section>
+    </section>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IPC2_2S2020Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IPC2_2S2020Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ficha">
           <Key>
             <PropertyRef Name="ID_Ficha" />
@@ -29,6 +29,15 @@
           <Property Name="ID_Partida" Type="int" Nullable="false" />
           <Property Name="id_tipopartida" Type="int" />
           <Property Name="id_tablero" Type="int" />
+          <Property Name="id_torneo" Type="int" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="ID_Reporte" />
+          </Key>
+          <Property Name="ID_Reporte" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idTipoReporte" Type="int" />
         </EntityType>
         <EntityType Name="Sala">
           <Key>
@@ -37,6 +46,8 @@
           <Property Name="ID_Sala" Type="int" Nullable="false" />
           <Property Name="id_partida" Type="int" />
           <Property Name="id_usuario" Type="int" />
+          <Property Name="CantMovJ1" Type="int" />
+          <Property Name="CantMovJ2" Type="int" />
         </EntityType>
         <EntityType Name="Tablero">
           <Key>
@@ -53,6 +64,22 @@
           <Property Name="ID_TipoPartida" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="25" />
           <Property Name="Descripcion" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="TipoReporte">
+          <Key>
+            <PropertyRef Name="ID_TipoReporte" />
+          </Key>
+          <Property Name="ID_TipoReporte" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="Torneo">
+          <Key>
+            <PropertyRef Name="ID_Torneo" />
+          </Key>
+          <Property Name="ID_Torneo" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" />
+          <Property Name="CantidadJug" Type="int" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -76,6 +103,18 @@
             </Principal>
             <Dependent Role="Tablero">
               <PropertyRef Name="id_ficha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idTorneo">
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="0..1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="ID_Torneo" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="id_torneo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -127,6 +166,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_tiporeporte">
+          <End Role="TipoReporte" Type="Self.TipoReporte" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoReporte">
+              <PropertyRef Name="ID_TipoReporte" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="idTipoReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_U">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
@@ -143,13 +206,20 @@
           <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marcador" EntityType="Self.Marcador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tablero" EntityType="Self.Tablero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPartida" EntityType="Self.TipoPartida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoReporte" EntityType="Self.TipoReporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_ficha" Association="Self.fk_ficha">
             <End Role="Ficha" EntitySet="Ficha" />
             <End Role="Tablero" EntitySet="Tablero" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idTorneo" Association="Self.fk_idTorneo">
+            <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
           <AssociationSet Name="fk_marcador" Association="Self.fk_marcador">
             <End Role="Marcador" EntitySet="Marcador" />
@@ -167,13 +237,20 @@
             <End Role="TipoPartida" EntitySet="TipoPartida" />
             <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
+          <AssociationSet Name="fk_tiporeporte" Association="Self.fk_tiporeporte">
+            <End Role="TipoReporte" EntitySet="TipoReporte" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="fk_U" Association="Self.fk_U">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
           <AssociationSet Name="fk_usuario" Association="Self.fk_usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Sala" EntitySet="Sala" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IPC2_2S2020Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -206,6 +283,8 @@
           <NavigationProperty Name="Sala" Relationship="Self.fk_partida" FromRole="Partida" ToRole="Sala" />
           <NavigationProperty Name="Tablero" Relationship="Self.fk_tablero" FromRole="Partida" ToRole="Tablero" />
           <NavigationProperty Name="TipoPartida" Relationship="Self.fk_tipopartida" FromRole="Partida" ToRole="TipoPartida" />
+          <Property Name="id_torneo" Type="Int32" />
+          <NavigationProperty Name="Torneo" Relationship="IPC2_2S2020Model.fk_idTorneo" FromRole="Partida" ToRole="Torneo" />
         </EntityType>
         <EntityType Name="Sala">
           <Key>
@@ -216,6 +295,8 @@
           <Property Name="id_usuario" Type="Int32" />
           <NavigationProperty Name="Partida" Relationship="Self.fk_partida" FromRole="Sala" ToRole="Partida" />
           <NavigationProperty Name="Usuario" Relationship="Self.fk_usuario" FromRole="Sala" ToRole="Usuario" />
+          <Property Name="CantMovJ1" Type="Int32" />
+          <Property Name="CantMovJ2" Type="Int32" />
         </EntityType>
         <EntityType Name="Tablero">
           <Key>
@@ -250,6 +331,7 @@
           <Property Name="País" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Correo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Sala" Relationship="Self.fk_usuario" FromRole="Usuario" ToRole="Sala" />
+          <NavigationProperty Name="Reporte" Relationship="IPC2_2S2020Model.fk_U" FromRole="Usuario" ToRole="Reporte" />
         </EntityType>
         <Association Name="fk_ficha">
           <End Role="Ficha" Type="Self.Ficha" Multiplicity="0..1" />
@@ -355,7 +437,86 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Sala" EntitySet="Sala" />
           </AssociationSet>
+          <EntitySet Name="TipoReporte" EntityType="IPC2_2S2020Model.TipoReporte" />
+          <EntitySet Name="Torneo" EntityType="IPC2_2S2020Model.Torneo" />
+          <AssociationSet Name="fk_idTorneo" Association="IPC2_2S2020Model.fk_idTorneo">
+            <End Role="Torneo" EntitySet="Torneo" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <EntitySet Name="Reporte" EntityType="IPC2_2S2020Model.Reporte" />
+          <AssociationSet Name="fk_tiporeporte" Association="IPC2_2S2020Model.fk_tiporeporte">
+            <End Role="TipoReporte" EntitySet="TipoReporte" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="fk_U" Association="IPC2_2S2020Model.fk_U">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TipoReporte">
+          <Key>
+            <PropertyRef Name="ID_TipoReporte" />
+          </Key>
+          <Property Name="ID_TipoReporte" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reporte" Relationship="IPC2_2S2020Model.fk_tiporeporte" FromRole="TipoReporte" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="Torneo">
+          <Key>
+            <PropertyRef Name="ID_Torneo" />
+          </Key>
+          <Property Name="ID_Torneo" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadJug" Type="Int32" />
+          <NavigationProperty Name="Partida" Relationship="IPC2_2S2020Model.fk_idTorneo" FromRole="Torneo" ToRole="Partida" />
+        </EntityType>
+        <Association Name="fk_idTorneo">
+          <End Type="IPC2_2S2020Model.Torneo" Role="Torneo" Multiplicity="0..1" />
+          <End Type="IPC2_2S2020Model.Partida" Role="Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Torneo">
+              <PropertyRef Name="ID_Torneo" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="id_torneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="ID_Reporte" />
+          </Key>
+          <Property Name="ID_Reporte" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idTipoReporte" Type="Int32" />
+          <NavigationProperty Name="TipoReporte" Relationship="IPC2_2S2020Model.fk_tiporeporte" FromRole="Reporte" ToRole="TipoReporte" />
+          <NavigationProperty Name="Usuario" Relationship="IPC2_2S2020Model.fk_U" FromRole="Reporte" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="fk_tiporeporte">
+          <End Type="IPC2_2S2020Model.TipoReporte" Role="TipoReporte" Multiplicity="0..1" />
+          <End Type="IPC2_2S2020Model.Reporte" Role="Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoReporte">
+              <PropertyRef Name="ID_TipoReporte" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="idTipoReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_U">
+          <End Type="IPC2_2S2020Model.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="IPC2_2S2020Model.Reporte" Role="Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -384,6 +545,7 @@
           <EntitySetMapping Name="Partida">
             <EntityTypeMapping TypeName="IPC2_2S2020Model.Partida">
               <MappingFragment StoreEntitySet="Partida">
+                <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
                 <ScalarProperty Name="ID_Partida" ColumnName="ID_Partida" />
                 <ScalarProperty Name="id_tipopartida" ColumnName="id_tipopartida" />
                 <ScalarProperty Name="id_tablero" ColumnName="id_tablero" />
@@ -393,6 +555,8 @@
           <EntitySetMapping Name="Sala">
             <EntityTypeMapping TypeName="IPC2_2S2020Model.Sala">
               <MappingFragment StoreEntitySet="Sala">
+                <ScalarProperty Name="CantMovJ2" ColumnName="CantMovJ2" />
+                <ScalarProperty Name="CantMovJ1" ColumnName="CantMovJ1" />
                 <ScalarProperty Name="ID_Sala" ColumnName="ID_Sala" />
                 <ScalarProperty Name="id_partida" ColumnName="id_partida" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
@@ -428,6 +592,33 @@
                 <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
                 <ScalarProperty Name="País" ColumnName="País" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoReporte">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.TipoReporte">
+              <MappingFragment StoreEntitySet="TipoReporte">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID_TipoReporte" ColumnName="ID_TipoReporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Torneo">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.Torneo">
+              <MappingFragment StoreEntitySet="Torneo">
+                <ScalarProperty Name="CantidadJug" ColumnName="CantidadJug" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID_Torneo" ColumnName="ID_Torneo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporte">
+            <EntityTypeMapping TypeName="IPC2_2S2020Model.Reporte">
+              <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="idTipoReporte" ColumnName="idTipoReporte" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="ID_Reporte" ColumnName="ID_Reporte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

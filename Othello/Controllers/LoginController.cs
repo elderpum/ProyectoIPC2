@@ -32,7 +32,8 @@ namespace Othello.Controllers
                         
                         Usuario oUser = lst.First();
                         Session["Usuarios"] = oUser;
-                        return Redirect("~/Partida/Sala");
+                        ViewBag.usuarioLog = oUser.NombreUser;
+                        return Redirect("~/Menu/Inicio");
                     }
                     else
                     {

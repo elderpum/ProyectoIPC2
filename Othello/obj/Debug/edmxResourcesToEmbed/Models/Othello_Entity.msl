@@ -23,6 +23,7 @@
     <EntitySetMapping Name="Partida">
       <EntityTypeMapping TypeName="IPC2_2S2020Model.Partida">
         <MappingFragment StoreEntitySet="Partida">
+          <ScalarProperty Name="id_torneo" ColumnName="id_torneo" />
           <ScalarProperty Name="ID_Partida" ColumnName="ID_Partida" />
           <ScalarProperty Name="id_tipopartida" ColumnName="id_tipopartida" />
           <ScalarProperty Name="id_tablero" ColumnName="id_tablero" />
@@ -32,6 +33,8 @@
     <EntitySetMapping Name="Sala">
       <EntityTypeMapping TypeName="IPC2_2S2020Model.Sala">
         <MappingFragment StoreEntitySet="Sala">
+          <ScalarProperty Name="CantMovJ2" ColumnName="CantMovJ2" />
+          <ScalarProperty Name="CantMovJ1" ColumnName="CantMovJ1" />
           <ScalarProperty Name="ID_Sala" ColumnName="ID_Sala" />
           <ScalarProperty Name="id_partida" ColumnName="id_partida" />
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
@@ -67,6 +70,33 @@
           <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
           <ScalarProperty Name="País" ColumnName="País" />
           <ScalarProperty Name="Correo" ColumnName="Correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoReporte">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.TipoReporte">
+        <MappingFragment StoreEntitySet="TipoReporte">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ID_TipoReporte" ColumnName="ID_TipoReporte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Torneo">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.Torneo">
+        <MappingFragment StoreEntitySet="Torneo">
+          <ScalarProperty Name="CantidadJug" ColumnName="CantidadJug" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ID_Torneo" ColumnName="ID_Torneo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reporte">
+      <EntityTypeMapping TypeName="IPC2_2S2020Model.Reporte">
+        <MappingFragment StoreEntitySet="Reporte">
+          <ScalarProperty Name="idTipoReporte" ColumnName="idTipoReporte" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="ID_Reporte" ColumnName="ID_Reporte" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

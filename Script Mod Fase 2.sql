@@ -43,6 +43,13 @@ create table Tablero(
 	primary key (ID_Tablero)
 );
 
+create table Torneo(
+	ID_Torneo int,
+	Nombre varchar(30),
+	CantidadJug int,
+	primary key (ID_Torneo)
+);
+
 create table Partida(
 	ID_Partida int,
 	id_tipopartida int,
@@ -60,6 +67,28 @@ create table Sala(
 	constraint fk_usuario foreign key (id_usuario) references Usuario (ID_Usuario),
 	primary key (ID_Sala)
 );
+
+create table TipoReporte(
+	ID_TipoReporte int,
+	Nombre varchar(25),
+	Descripcion varchar(35),
+	primary key (ID_TipoReporte)
+);
+
+create table Reporte(
+	ID_Reporte int,
+	idUsuario int,
+	idTipoReporte int,
+	constraint fk_U foreign key (idUsuario) references Usuario (ID_Usuario),
+	constraint fk_tiporeporte foreign key (idTipoReporte) references TipoReporte (ID_TipoReporte),
+	primary key (ID_Reporte)
+);
+
+Alter table Sala add CantMovJ1 int;
+Alter table Sala add CantMovJ2 int;
+
+Alter table Partida add id_torneo int;
+Alter table Partida add constraint fk_idTorneo Foreign Key (id_torneo) references Torneo(ID_Torneo);
 
 insert into TipoPartida values(1, 'J vs CPU', 'Jugador contra CPU');
 insert into TipoPartida values(2, 'J vs J', 'Jugador contra Jugador');

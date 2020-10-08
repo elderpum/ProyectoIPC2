@@ -1,0 +1,81 @@
+﻿@model List<Othello.Models.Pieza>
+@{
+    Layout = null;
+
+    List<int> numeros = new List<int>();
+    for (int i = 0; i < 10; i++)
+    {
+        numeros.Add(i);
+    }
+    string[] letras = { "A", "B", "C", "D", "E", "F", "G", "H" };
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title Sala</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel=”shortcut icon” type=”image/png” href=”~/Stock/OthelloIcon.png” />
+    <link rel="stylesheet" type="text/css" href="~/Content/Tablero.css" />
+</head>
+<body>
+    <div class="row">
+        <div class="col" id="Tablero">
+            @using (Html.BeginForm(actionName: "CambioFicha", controllerName: "PartidaController"))
+            {
+                <div id="fila">
+                    <div class="caja-transparente"></div>
+                    @{
+                        for (int i = 1; i < 9; i++)
+                        {
+                            <div class="caja-decorativa">@i</div>
+                        }
+                    }
+                    <div class="caja-transparente"></div>
+                </div>
+
+                <div class="fila">
+                    @{
+                        for (int i = 0; i < letras.Length; i++)
+                        {
+                            <div class="caja-decorativa">@letras[i]</div>
+                            for (int j = 0; j < 8; j++)
+                            {
+                                <button type="submit" value="@j" class="caja" name="io">
+                                    <div class="inside @Model[j].Color"></div>
+                                </button>
+                            }
+                            <div class="caja-decorativa">@letras[i]</div>
+                        }
+                    }
+                </div>
+
+                <div id="fila">
+                    <div class="caja-transparente"></div>
+                    @{
+                        for (int i = 1; i < 9; i++)
+                        {
+                            <div class="caja-decorativa">@i</div>
+                        }
+                    }
+                    <div class="caja-transparente"></div>
+                </div>
+            }
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col" id="Tablero">
+                    <div class="text-white"> HOLAAAA</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
