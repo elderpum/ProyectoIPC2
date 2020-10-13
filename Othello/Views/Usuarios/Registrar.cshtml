@@ -15,12 +15,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/LoginStyle.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Stock/OthelloIcon.png" />
 </head>
 <body>
     <section class="container-fluid bg">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
-                <form class="form-container" action="~/Login/Juego" method="post">
                     <div class="form-group">
                         <p class="h4">Othello Game</p>
                     </div>
@@ -48,10 +48,9 @@
                     <div class="form-group">
                         @Html.TextBoxFor(model => model.Correo, "", new { @class = "form-control", @type = "email", @placeholder = "Correo:" })
                     </div>
-                    <a href="~/Login/Index" class="btn btn-primary btn-block">Registrar</a>
+                    <a href="~/Usuarios/Add" class="btn btn-primary btn-block">Registrar</a>
                     <a href="~/Usuarios/Registrar" class="btn btn-primary btn-block">Limpiar</a>
                     <a href="~/Login/Index" class="btn btn-primary btn-block">Regresar</a>
-                </form>
             </section>
         </section>
     </section>

@@ -19,6 +19,17 @@ namespace Othello.Controllers
         {
             return View(db.Usuario.ToList());
         }
+        public ActionResult Add(Usuario usuario)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Usuario.Add(usuario);
+                return Redirect("~/Login/Index");
+            }
+
+            return Redirect("~/Usuarios/Registrar");
+        }
 
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
