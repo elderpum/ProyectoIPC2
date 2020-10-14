@@ -6,6 +6,10 @@
     string[] letras = { "A", "B", "C", "D", "E", "F", "G", "H" };
 
     TempData["turno"] = "negro";
+    Model[27].Color = "black";
+    Model[28].Color = "white";
+    Model[35].Color = "white";
+    Model[36].Color = "black";
 }
 
 <!DOCTYPE html>
@@ -46,36 +50,10 @@
                             for (int j = 0; j < 8; j++)
                             {
 
-                                if (contador == 27)
-                                {
-                                    <button type="submit" value="@contador" class="caja" name="io">
-                                        <div class="inside black @{Model[contador].Color = "black";}"></div>
-                                    </button>
-                                }
-                                else if (contador == 28)
-                                {
-                                    <button type="submit" value="@contador" class="caja" name="io">
-                                        <div class="inside white @{Model[contador].Color = "white";}"></div>
-                                    </button>
-                                }
-                                else if (contador == 35)
-                                {
-                                    <button type="submit" value="@contador" class="caja" name="io">
-                                        <div class="inside white @{Model[contador].Color = "white";}"></div>
-                                    </button>
-                                }
-                                else if (contador == 36)
-                                {
-                                    <button type="submit" value="@contador" class="caja" name="io">
-                                        <div class="inside black @{Model[contador].Color = "black";}"></div>
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button type="submit" value="@contador" class="caja" name="io">
-                                        <div class="inside @Model[contador].Color"></div>
-                                    </button>
-                                }
+                                <button type="submit" value="@contador" class="caja" name="io">
+                                    <div class="inside @Model[contador].Color"></div>
+                                </button>
+
                                 contador++;
                             }
                             <div class="caja-decorativa">@letras[i]</div>
