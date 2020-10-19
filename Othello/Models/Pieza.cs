@@ -11,5 +11,15 @@ namespace Othello.Models
         public string Color { get; set; }
         public string ContadorJ1 { get; set; }
         public string ContadorJ2 { get; set; }
+
+        public Pieza() 
+        {
+            this.Color = null;
+        }
+        public Pieza(int id) 
+        {
+            this.ID = id;
+            this.Color = null;
+        }
     }
 }

@@ -41,8 +41,9 @@ namespace Othello.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return Redirect("~/Login/Index");
             }
         }
