@@ -66,6 +66,15 @@ body {
     justify-content: center;
 }
 
+#ControlDiv{
+    float: left;
+    margin-left: 470px;
+    justify-content: right;
+    width: 700px;
+    height: 100%;
+    margin-top: 250px;
+}
+
 .fila{
     padding: 0px;
     background-color: darkorange;

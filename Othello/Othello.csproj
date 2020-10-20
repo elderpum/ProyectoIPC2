@@ -358,6 +358,7 @@
     <Content Include="Views\Partida\Sala1.cshtml" />
     <Content Include="Views\Menu\Inicio.cshtml" />
     <Content Include="Views\Menu\Info.cshtml" />
+    <Content Include="Views\Partida\OthelloXtream.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,5 +29,10 @@ namespace Othello.Controllers
         {
             return Redirect("~/Partida/Sala2");
         }
+
+        public ActionResult Xtream()
+        {
+            return Redirect("~/Partida/OthelloXtream");
+        }
     }
 }
