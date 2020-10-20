@@ -50,7 +50,7 @@ namespace Othello.Controllers
         }
         public ActionResult Redirect()
         {
-            return Redirect("~/Partida/Sala1");
+            return Redirect("~/Partida/OthelloXtream");
         }
         public void Cronometro()
         {
@@ -59,6 +59,8 @@ namespace Othello.Controllers
 
         public ActionResult CambioFicha(string io)
         {
+            int contadorNegras = 0;
+            int contadorBlancas = 0;
             bool encierra = false;
             List<Pieza> listaFichasCambiar = new List<Pieza>();
             int indice = Int32.Parse(io);
@@ -583,13 +585,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (listaGeneral[noroeste].Color == "white")
+                        if (listaGeneral[noreste].Color == "white")
                         {
-                            Pieza ficha = listaGeneral[noroeste];
+                            Pieza ficha = listaGeneral[noreste];
                             listaFichasCambiar.Add(ficha);
-                            noroeste = noroeste - 9;
+                            noreste = noreste - 9;
                         }
-                        else if (listaGeneral[noroeste].Color == "black")
+                        else if (listaGeneral[noreste].Color == "black")
                         {
                             encierra = true;
                             break;
@@ -601,13 +603,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (listaGeneral[noroeste].Color == "black")
+                        if (listaGeneral[noreste].Color == "black")
                         {
-                            Pieza ficha = listaGeneral[noroeste];
+                            Pieza ficha = listaGeneral[noreste];
                             listaFichasCambiar.Add(ficha);
-                            noroeste = noroeste - 9;
+                            noreste = noreste - 9;
                         }
-                        else if (listaGeneral[noroeste].Color == "white")
+                        else if (listaGeneral[noreste].Color == "white")
                         {
                             encierra = true;
                             break;
@@ -651,12 +653,40 @@ namespace Othello.Controllers
             {
                 listaGeneral[indice].Color = "white";
                 turno = true;
+            }
+
+            for (int i = 0; i < 64; i++)
+            {
+                if (listaGeneral[i].Color == "black")
+                {
+                    contadorNegras++;
+                }
+                else if (listaGeneral[i].Color == "white")
+                {
+                    contadorBlancas++;
+                }
+            }
+            ViewBag.contadorNegras = contadorNegras;
+            ViewBag.contadorBlancas = contadorBlancas;
+
+            if (contadorNegras + contadorBlancas == 64)
+            {
+                if (contadorNegras > contadorBlancas)
+                {
+                    ViewBag.Ganador = "El ganador es el Negro";
+                }
+                else
+                {
+                    ViewBag.Ganador = "El ganador es el Blanco";
+                }
             }
             return View("Sala1", listaGeneral);
         }
 
         public ActionResult CambioFichaXtream(string io)
         {
+            int contadorNegras = 0;
+            int contadorBlancas = 0;
             bool encierra = false;
             List<Pieza> listaFichasCambiar = new List<Pieza>();
             int indice = Int32.Parse(io);
@@ -1181,13 +1211,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (listaGeneral[noroeste].Color == "white")
+                        if (listaGeneral[noreste].Color == "white")
                         {
-                            Pieza ficha = listaGeneral[noroeste];
+                            Pieza ficha = listaGeneral[noreste];
                             listaFichasCambiar.Add(ficha);
-                            noroeste = noroeste - 9;
+                            noreste = noreste - 9;
                         }
-                        else if (listaGeneral[noroeste].Color == "black")
+                        else if (listaGeneral[noreste].Color == "black")
                         {
                             encierra = true;
                             break;
@@ -1199,13 +1229,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (listaGeneral[noroeste].Color == "black")
+                        if (listaGeneral[noreste].Color == "black")
                         {
-                            Pieza ficha = listaGeneral[noroeste];
+                            Pieza ficha = listaGeneral[noreste];
                             listaFichasCambiar.Add(ficha);
-                            noroeste = noroeste - 9;
+                            noreste = noreste - 9;
                         }
-                        else if (listaGeneral[noroeste].Color == "white")
+                        else if (listaGeneral[noreste].Color == "white")
                         {
                             encierra = true;
                             break;
@@ -1250,7 +1280,34 @@ namespace Othello.Controllers
                 listaGeneral[indice].Color = "white";
                 turno = true;
             }
-            return View("Sala1", listaGeneral);
+
+            for (int i = 0; i < 64; i++)
+            {
+                if (listaGeneral[i].Color == "black")
+                {
+                    contadorNegras++;
+                }
+                else if (listaGeneral[i].Color == "white")
+                {
+                    contadorBlancas++;
+                }
+            }
+            ViewBag.contadorNegras = contadorNegras;
+            ViewBag.contadorBlancas = contadorBlancas;
+
+            if (contadorNegras + contadorBlancas == 64)
+            {
+                if (contadorNegras > contadorBlancas)
+                {
+                    ViewBag.Ganador = "El ganador es el Blanco";
+                }
+                else
+                {
+                    ViewBag.Ganador = "El ganador es el Negro";
+                }
+            }
+
+            return View("OthelloXtream", listaGeneral);
         }
 
         public ActionResult CargaArchivo(HttpPostedFileBase doc)
