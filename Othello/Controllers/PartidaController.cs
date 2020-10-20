@@ -54,7 +54,14 @@ namespace Othello.Controllers
         }
         public void Cronometro()
         {
-            
+            TimeSpan start = DateTime.Now.TimeOfDay;
+            TimeSpan end = DateTime.Now.TimeOfDay;
+            TimeSpan time = end - start;
+            int horas = time.Hours;
+            int minutos = time.Minutes;
+            int segundos = time.Seconds;
+            int mili = time.Milliseconds;
+            ViewBag.cronometro = (horas, minutos, segundos, mili);
         }
 
         public ActionResult CambioFicha(string io)
@@ -680,6 +687,7 @@ namespace Othello.Controllers
                     ViewBag.Ganador = "El ganador es el Blanco";
                 }
             }
+            Cronometro();
             return View("Sala1", listaGeneral);
         }
 
@@ -1306,7 +1314,7 @@ namespace Othello.Controllers
                     ViewBag.Ganador = "El ganador es el Negro";
                 }
             }
-
+            Cronometro();
             return View("OthelloXtream", listaGeneral);
         }
 
