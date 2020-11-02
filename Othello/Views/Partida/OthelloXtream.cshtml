@@ -4,6 +4,7 @@
 
     int contador = 0;
     string[] letras = { "A", "B", "C", "D", "E", "F", "G", "H" };
+    TempData["empezar"] = DateTime.Now.TimeOfDay;
 }
 
 <!DOCTYPE html>
@@ -99,7 +100,10 @@
                 <p class="h6 text-left" style="float:right; margin-right:10px;">@ViewBag.contadorBlancas</p>
             </div>
 
-            <p class="h6 text-center">@ViewBag.cronometro</p>
+            <div style="overflow: hidden;">
+                <p class="h6 text-left" style="float:left;">@ViewBag.CronometroNegro</p>
+                <p class="h6 text-left" style="float:right; margin-right:10px;">@ViewBag.CronometroBlanco</p>
+            </div>
 
             <p class="h6 text-center">@ViewBag.Ganador</p>
 

@@ -1,0 +1,48 @@
+﻿@model Othello.Models.Usuario
+@{
+    Layout = null;
+    string usuario;
+    usuario = System.Web.HttpContext.Current.Session["login"].ToString();
+    bool juego;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Menú PrePartida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Prepartida.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Stock/OthelloIcon.png" />
+</head>
+<body>
+    <div class="container-fluid bg">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-md-5 bg-dark border-danger">
+                <p class="h5 text-center text-white">Configuración de la Sala</p>
+                <p class="h6 text-center">@usuario</p>
+                <a href="~/Menu/PartidaIA" class="btn btn-primary btn-block">Partida vs IA</a>
+                <a href="~/Menu/Inicio" class="btn btn-primary btn-block">Regresar al Menú</a>
+                <br />
+                <label>@Html.RadioButton("Juego", juego = true)Juego Normal</label>
+                <label>@Html.RadioButton("Juego", juego = false)Juego Inverso</label>
+                @{ 
+                    if (juego) //Si juego es verdadero, entonces el modo de juego es el normal
+                    {
+                        ViewBag.modojuego = "Normal";
+                    }
+                    else
+                    {
+                        ViewBag.modojuego = "Inverso";
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

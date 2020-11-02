@@ -1,7 +1,8 @@
 ﻿@model Othello.Models.Usuario
 @{
     Layout = null;
-    string usuario = ViewBag.usuarioLog;
+    string usuario;
+    usuario = System.Web.HttpContext.Current.Session["login"].ToString();
 }
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
                         <a href="~/Menu/Info" class="btn btn-primary btn-block">Información</a>
                     </right>
                 </div>
-                <a href="~/Menu/PartidaIA" class="btn btn-primary btn-block">Partida vs IA</a>
+                <a href="~/Menu/PreOthello" class="btn btn-primary btn-block">Iniciar Sala Partida J vs IA</a>
                 <a href="~/Menu/PartidaVS" class="btn btn-primary btn-block">Versus</a>
                 <a href="~/Partida/Torneo" class="btn btn-primary btn-block">Torneo</a>
                 <a href="~/Menu/Xtream" class="btn btn-primary btn-block">Othello Xtream</a> 

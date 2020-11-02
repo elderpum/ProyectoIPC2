@@ -54,14 +54,17 @@ namespace Othello.Controllers
         }
         public void Cronometro()
         {
-            TimeSpan start = DateTime.Now.TimeOfDay;
-            TimeSpan end = DateTime.Now.TimeOfDay;
-            TimeSpan time = end - start;
-            int horas = time.Hours;
-            int minutos = time.Minutes;
-            int segundos = time.Seconds;
-            int mili = time.Milliseconds;
-            ViewBag.cronometro = (horas, minutos, segundos, mili);
+            TimeSpan inicio = (TimeSpan)TempData["empezar"];
+            TimeSpan fin = DateTime.Now.TimeOfDay;
+            TimeSpan tiempo = fin - inicio;
+            if (turno)
+            {
+                ViewBag.CronometroNegro = tiempo;
+            }
+            else
+            {
+                ViewBag.CronometroBlanco = tiempo;
+            }
         }
 
         public ActionResult CambioFicha(string io)
@@ -678,13 +681,27 @@ namespace Othello.Controllers
 
             if (contadorNegras + contadorBlancas == 64)
             {
-                if (contadorNegras > contadorBlancas)
+                if (ViewBag.modojuego == "Normal")
                 {
-                    ViewBag.Ganador = "El ganador es el Negro";
+                    if (contadorNegras > contadorBlancas)
+                    {
+                        ViewBag.Ganador = "El ganador es el Negro";
+                    }
+                    else
+                    {
+                        ViewBag.Ganador = "El ganador es el Blanco";
+                    }
                 }
-                else
+                else if (ViewBag.modojuego == "Inverso")
                 {
-                    ViewBag.Ganador = "El ganador es el Blanco";
+                    if (contadorBlancas > contadorNegras)
+                    {
+                        ViewBag.Ganador = "El ganador es el Negro";
+                    }
+                    else
+                    {
+                        ViewBag.Ganador = "El ganador es el Blanco";
+                    }
                 }
             }
             Cronometro();

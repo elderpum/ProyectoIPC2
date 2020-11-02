@@ -196,6 +196,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\LoginStyle.css" />
     <Content Include="Content\Menu.css" />
+    <Content Include="Content\Prepartida.css" />
     <Content Include="Content\Tablero.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -359,6 +360,7 @@
     <Content Include="Views\Menu\Inicio.cshtml" />
     <Content Include="Views\Menu\Info.cshtml" />
     <Content Include="Views\Partida\OthelloXtream.cshtml" />
+    <Content Include="Views\Menu\PreOthello.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,6 +20,11 @@ namespace Othello.Controllers
             return View();
         }
 
+        public ActionResult PreOthello()
+        {
+            return View();
+        }
+
         public ActionResult PartidaIA()
         {
             return Redirect("~/Partida/Sala1");

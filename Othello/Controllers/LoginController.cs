@@ -29,10 +29,9 @@ namespace Othello.Controllers
                               select a;
                     if (lst.Count() > 0)
                     {
-                        
                         Usuario oUser = lst.First();
                         Session["Usuarios"] = oUser;
-                        ViewBag.usuarioLog = oUser.NombreUser;
+                        System.Web.HttpContext.Current.Session["login"] = oUser.NombreUser;
                         return Redirect("~/Menu/Inicio");
                     }
                     else
