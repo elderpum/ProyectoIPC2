@@ -3,8 +3,12 @@
     Layout = null;
 
     int contador = 0;
-    string[] letras = { "A", "B", "C", "D", "E", "F", "G", "H" };
+    string[] letras = { "A", "B", "C", "D", "E", "F", "G", "H" , "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"};
     TempData["empezar"] = DateTime.Now.TimeOfDay;
+    int fila = Int32.Parse(System.Web.HttpContext.Current.Session["fila"].ToString());
+    int columna = Int32.Parse(System.Web.HttpContext.Current.Session["columna"].ToString());
+    int limiteFila = fila + 1;
+    int limiteColumna = columna + 1;
 }
 
 <!DOCTYPE html>
@@ -19,7 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="~/Stock/OthelloIcon.png" />
-    <link rel="stylesheet" type="text/css" href="~/Content/Tablero.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/TableroD.css" />
 </head>
 <body>
     <div class="row justify-content-center">
@@ -29,13 +33,13 @@
     </div>
 
     <div class="row">
-        <div class="col" id="Tablero">
+        <div class="col">
             @using (Html.BeginForm(actionName: "CambioFichaXtream", controllerName: "Partida"))
             {
                 <div id="fila">
                     <div class="caja-transparente"></div>
                     @{
-                        for (int i = 1; i < 9; i++)
+                        for (int i = 1; i < limiteFila; i++)
                         {
                             <div class="caja-decorativa">@i</div>
                         }
@@ -45,10 +49,10 @@
 
                 <div class="fila">
                     @{
-                        for (int i = 0; i < letras.Length; i++)
+                        for (int i = 0; i < columna; i++)
                         {
                             <div class="caja-decorativa">@letras[i]</div>
-                            for (int j = 0; j < 8; j++)
+                            for (int j = 0; j < fila; j++)
                             {
 
                                 <button type="submit" value="@contador" class="caja" name="io">
@@ -65,7 +69,7 @@
                 <div id="fila">
                     <div class="caja-transparente"></div>
                     @{
-                        for (int i = 1; i < 9; i++)
+                        for (int i = 1; i < limiteFila; i++)
                         {
                             <div class="caja-decorativa">@i</div>
                         }

@@ -1,0 +1,169 @@
+﻿@model Othello.Models.TableroDinamico
+@{
+    Layout = null;
+    string usuario;
+    usuario = System.Web.HttpContext.Current.Session["login"].ToString();
+    List<string> listaJuego = new List<string>();
+    listaJuego.Add("Reto Normal");
+    listaJuego.Add("Reto inverso");
+    List<string> listaColores = new List<string>();
+    listaColores.Add("Null");
+    listaColores.Add("Negro");
+    listaColores.Add("Blanco");
+    listaColores.Add("Rojo");
+    listaColores.Add("Azul");
+    listaColores.Add("Anaranjado");
+    listaColores.Add("Amarillo");
+    listaColores.Add("Verde");
+    listaColores.Add("Violeta");
+    listaColores.Add("Celeste");
+    listaColores.Add("Gris");
+    List<string> listaMedidas = new List<string>();
+    for (int i = 5; i < 21; i++)
+    {
+        listaMedidas.Add(i.ToString());
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Menú PrePartida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Prepartida.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Stock/OthelloIcon.png" />
+</head>
+<body>
+    <div class="container-fluid bg">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-md-5 bg-dark border-danger">
+                <p class="h5 text-center text-white">Configuración de la Sala</p>
+                <br />
+                @using (Html.BeginForm("TableroD", "Menu", FormMethod.Post))
+                {
+                    @Html.TextBoxFor(model => model.nombreJ1, new { @class = "form-control", @type = "text", @placeholder = usuario })
+                    @Html.TextBoxFor(model => model.nombreJ2, new { @class = "form-control", @type = "text", @placeholder = "Jugador 2:" })
+                    @Html.LabelFor(model => model.modo, "Seleccione el modo de juego:")
+                    <select class="form-control" data-val="true" id="modo" name="modo">
+                        <option value="">Seleccione uno:</option>
+                        @foreach (var a in listaJuego)
+                        {
+                            <option value="@a">@a</option>
+                        }
+                    </select>
+                    @Html.LabelFor(model => model.fila, "Seleccione las filas:")
+                    <select class="form-control" data-val="true" id="fila" name="fila">
+                        <option value="">Seleccione uno:</option>
+                        @foreach (var a in listaMedidas)
+                        {
+                            <option value="@a">@a</option>
+                        }
+                    </select>
+                    @Html.LabelFor(model => model.columna, "Seleccione las columnas:")
+                    <select class="form-control" data-val="true" id="columna" name="columna">
+                        <option value="">Seleccione uno:</option>
+                        @foreach (var a in listaMedidas)
+                        {
+                            <option value="@a">@a</option>
+                        }
+                    </select>
+                    <div class="row">
+                        <p class="h6 text-center">Seleccione los Colores para el jugador 1:</p>
+                        @Html.LabelFor(model => model.j1c1, "Seleccione Color 1:")
+                        <select class="form-control" data-val="true" id="j1c1" name="j1c1">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                        @Html.LabelFor(model => model.j1c2, "Seleccione Color 2:")
+                        <select class="form-control" data-val="true" id="j1c2" name="j1c2">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                        @Html.LabelFor(model => model.j1c3, "Seleccione Color 3:")
+                        <select class="form-control" data-val="true" id="j1c3" name="j1c3">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                        @Html.LabelFor(model => model.j1c4, "Seleccione Color 4:")
+                        <select class="form-control" data-val="true" id="j1c4" name="j1c4">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                        @Html.LabelFor(model => model.j1c5, "Seleccione Color 5:")
+                        <select class="form-control" data-val="true" id="j1c5" name="j1c5">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="row">
+                        <p class="h6 text-center">Seleccione los Colores para el jugador 2:</p>
+                        @Html.LabelFor(model => model.j2c1, "Seleccione Color 1:")
+                        <select class="form-control" data-val="true" id="j2c1" name="j2c1">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                        @Html.LabelFor(model => model.j2c2, "Seleccione Color 2:")
+                        <select class="form-control" data-val="true" id="j2c2" name="j2c2">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                        @Html.LabelFor(model => model.j2c3, "Seleccione Color 3:")
+                        <select class="form-control" data-val="true" id="j2c3" name="j2c3">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                        @Html.LabelFor(model => model.j2c4, "Seleccione Color 4:")
+                        <select class="form-control" data-val="true" id="j2c4" name="j2c4">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                        @Html.LabelFor(model => model.j2c5, "Seleccione Color 5:")
+                        <select class="form-control" data-val="true" id="j2c5" name="j2c5">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var a in listaColores)
+                            {
+                                <option value="@a">@a</option>
+                            }
+                        </select>
+                    </div>
+                    <input type="submit" class="btn-primary btn-block" value="Iniciar Partida MJ" />
+                    <a href="~/Menu/Inicio" class="btn btn-primary btn-block">Regresar al Menú</a>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

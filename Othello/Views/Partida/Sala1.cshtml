@@ -5,6 +5,9 @@
     int contador = 0;
     string[] letras = { "A", "B", "C", "D", "E", "F", "G", "H" };
     TempData["empezar"] = DateTime.Now.TimeOfDay;
+    string nombreJ2N = System.Web.HttpContext.Current.Session["J2N"].ToString();
+    string modoN = System.Web.HttpContext.Current.Session["modoN"].ToString();
+    string nombreJ1N = System.Web.HttpContext.Current.Session["login"].ToString();
 }
 
 <!DOCTYPE html>
@@ -101,11 +104,17 @@
             </div>
 
             <div style="overflow: hidden;">
+                <p class="h6 text-left" style="float:left;">@nombreJ1N</p>
+                <p class="h6 text-left" style="float:right; margin-right:10px;">@nombreJ2N</p>
+            </div>
+
+            <div style="overflow: hidden;">
                 <p class="h6 text-left" style="float:left;">@ViewBag.CronometroNegro</p>
                 <p class="h6 text-left" style="float:right; margin-right:10px;">@ViewBag.CronometroBlanco</p>
             </div>
 
             <p class="h6 text-center">@ViewBag.Ganador</p>
+            <p class="h6 text-center">@modoN</p>
 
             <a href="~/Menu/Inicio" class="btn btn-primary btn-block">Regresar al Menú</a>
         </div>

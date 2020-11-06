@@ -39,7 +39,10 @@ namespace Othello.Controllers
 
         public ActionResult OthelloXtream()
         {
-            for (int i = 0; i < 64; i++)
+            int columnas = Int32.Parse(System.Web.HttpContext.Current.Session["columna"].ToString());
+            int filas = Int32.Parse(System.Web.HttpContext.Current.Session["fila"].ToString());
+            int total = columnas * filas;
+            for (int i = 0; i < total; i++)
             {
                 Pieza pieza = new Pieza(i);
                 listaGeneral.Add(pieza);
@@ -69,6 +72,7 @@ namespace Othello.Controllers
 
         public ActionResult CambioFicha(string io)
         {
+            string modoN = System.Web.HttpContext.Current.Session["modoN"].ToString();
             int contadorNegras = 0;
             int contadorBlancas = 0;
             bool encierra = false;
@@ -681,7 +685,7 @@ namespace Othello.Controllers
 
             if (contadorNegras + contadorBlancas == 64)
             {
-                if (ViewBag.modojuego == "Normal")
+                if (modoN == "Reto Normal")
                 {
                     if (contadorNegras > contadorBlancas)
                     {
@@ -692,7 +696,7 @@ namespace Othello.Controllers
                         ViewBag.Ganador = "El ganador es el Blanco";
                     }
                 }
-                else if (ViewBag.modojuego == "Inverso")
+                else
                 {
                     if (contadorBlancas > contadorNegras)
                     {

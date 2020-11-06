@@ -145,6 +145,8 @@
     <Compile Include="Models\Marcador.cs">
       <DependentUpon>Othello_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TableroDinamico.cs" />
+    <Compile Include="Models\TableroNormal.cs" />
     <Compile Include="Models\Othello_Entity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -198,6 +200,7 @@
     <Content Include="Content\Menu.css" />
     <Content Include="Content\Prepartida.css" />
     <Content Include="Content\Tablero.css" />
+    <Content Include="Content\TableroD.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -361,6 +364,7 @@
     <Content Include="Views\Menu\Info.cshtml" />
     <Content Include="Views\Partida\OthelloXtream.cshtml" />
     <Content Include="Views\Menu\PreOthello.cshtml" />
+    <Content Include="Views\Menu\PreOthelloXtream.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

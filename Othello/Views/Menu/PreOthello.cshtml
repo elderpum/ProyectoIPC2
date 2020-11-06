@@ -1,9 +1,11 @@
-﻿@model Othello.Models.Usuario
+﻿@model Othello.Models.TableroNormal
 @{
     Layout = null;
     string usuario;
     usuario = System.Web.HttpContext.Current.Session["login"].ToString();
-    bool juego;
+    List<string> listaJuego = new List<string>();
+    listaJuego.Add("Reto Normal");
+    listaJuego.Add("Reto inverso");
 }
 
 <!DOCTYPE html>
@@ -25,21 +27,23 @@
         <div class="row justify-content-center">
             <div class="col-10 col-sm-10 col-md-5 bg-dark border-danger">
                 <p class="h5 text-center text-white">Configuración de la Sala</p>
-                <p class="h6 text-center">@usuario</p>
-                <a href="~/Menu/PartidaIA" class="btn btn-primary btn-block">Partida vs IA</a>
-                <a href="~/Menu/Inicio" class="btn btn-primary btn-block">Regresar al Menú</a>
                 <br />
-                <label>@Html.RadioButton("Juego", juego = true)Juego Normal</label>
-                <label>@Html.RadioButton("Juego", juego = false)Juego Inverso</label>
-                @{ 
-                    if (juego) //Si juego es verdadero, entonces el modo de juego es el normal
-                    {
-                        ViewBag.modojuego = "Normal";
-                    }
-                    else
-                    {
-                        ViewBag.modojuego = "Inverso";
-                    }
+                @using (Html.BeginForm("Tablero", "Menu", FormMethod.Post))
+                {
+                    @Html.TextBoxFor(model => model.nombreJ1, new { @class = "form-control", @type = "text", @placeholder = usuario })
+                    <br />
+                    @Html.TextBoxFor(model => model.nombreJ2, new { @class = "form-control", @type = "text", @placeholder = "Jugador 2:" })
+                    <br />
+                    @Html.LabelFor(model => model.modo, "Seleccione el modo de juego:")
+                    <select class="form-control" data-val="true" id="modo" name="modo">
+                        <option value="">Seleccione uno:</option>
+                        @foreach (var a in listaJuego)
+                        {
+                            <option value="@a">@a</option>
+                        }
+                    </select>
+                    <input type="submit" class="btn-primary btn-block" value="J vs IA" />
+                    <a href="~/Menu/Inicio" class="btn btn-primary btn-block">Regresar al Menú</a>
                 }
             </div>
         </div>
