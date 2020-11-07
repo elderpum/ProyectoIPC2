@@ -9,6 +9,12 @@
     int columna = Int32.Parse(System.Web.HttpContext.Current.Session["columna"].ToString());
     int limiteFila = fila + 1;
     int limiteColumna = columna + 1;
+    string height = ((fila * 25)).ToString()+"px";
+    string width = ((columna * 25)).ToString()+"px";
+    string usuario;
+    usuario = System.Web.HttpContext.Current.Session["login"].ToString();
+    string invitado;
+    invitado = System.Web.HttpContext.Current.Session["J2X"].ToString();
 }
 
 <!DOCTYPE html>
@@ -33,7 +39,7 @@
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col" id="Tablero">
             @using (Html.BeginForm(actionName: "CambioFichaXtream", controllerName: "Partida"))
             {
                 <div id="fila">
@@ -86,16 +92,16 @@
             <br />
             <br />
             <div style="overflow: hidden;">
-                <p class="h6 text-left" style="float:left;">Negro</p>
-                <p class="h6 text-left" style="float:right; margin-right:10px;">Blanco</p>
+                <p class="h6 text-left" style="float:left;">@usuario</p>
+                <p class="h6 text-left" style="float:right; margin-right:10px;">@invitado</p>
             </div>
             <div style="overflow: hidden;">
                 <div class="caja" style="float:left;">
-                    <div class="inside black"></div>
+                    <div class="inside @ViewBag.colorJ1"></div>
                 </div>
 
                 <div class="caja" style="float:right;">
-                    <div class="inside white"></div>
+                    <div class="inside @ViewBag.colorJ2"></div>
                 </div>
             </div>
 
