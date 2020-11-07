@@ -22,5 +22,6 @@ namespace Othello.Models
         public string j2c5 { get; set; }
         public string fila { get; set; }
         public string columna { get; set; }
+        public string apertura { get; set; }
     }
 }

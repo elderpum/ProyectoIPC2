@@ -25,6 +25,7 @@ namespace Othello.Controllers
         static string j2c5 = "";
         static string fila = "";
         static string columna = "";
+        static string tipoApertura = "";
         // GET: Menu
         public ActionResult Inicio()
         {
@@ -96,6 +97,7 @@ namespace Othello.Controllers
             string j2color5 = tablero.j2c5;
             string filas = tablero.fila;
             string columnas = tablero.columna;
+            string apertura = tablero.apertura;
             if (nombre != null && modo !=null)
             {
                 if (j1color1 != null && j1color2 != null && j1color3 != null && j1color4 != null && j1color5 != null && j2color1 != null && j2color2 != null && j2color3 != null && j2color4 != null && j2color5 != null)
@@ -128,6 +130,8 @@ namespace Othello.Controllers
                     System.Web.HttpContext.Current.Session["fila"] = fila;
                     columna = columnas;
                     System.Web.HttpContext.Current.Session["columna"] = columna;
+                    tipoApertura = apertura;
+                    System.Web.HttpContext.Current.Session["apertura"] = tipoApertura;
                     return Redirect("~/Partida/OthelloXtream");
                 }
                 else

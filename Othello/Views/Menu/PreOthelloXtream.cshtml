@@ -25,6 +25,9 @@
         listaMedidas.Add(b.ToString());
         b = b + 2;
     }
+    List<string> tipoApertura = new List<string>();
+    tipoApertura.Add("Normal");
+    tipoApertura.Add("Personalizada");
 }
 
 <!DOCTYPE html>
@@ -71,6 +74,14 @@
                     <select class="form-control" data-val="true" id="columna" name="columna">
                         <option value="">Seleccione uno:</option>
                         @foreach (var a in listaMedidas)
+                        {
+                            <option value="@a">@a</option>
+                        }
+                    </select>
+                    @Html.LabelFor(model => model.fila, "Seleccione el tipo de apertura:")
+                    <select class="form-control" data-val="true" id="fila" name="fila">
+                        <option value="">Seleccione uno:</option>
+                        @foreach (var a in tipoApertura)
                         {
                             <option value="@a">@a</option>
                         }

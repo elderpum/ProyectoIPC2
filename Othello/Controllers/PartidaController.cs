@@ -43,6 +43,7 @@ namespace Othello.Controllers
         {
             int columnas = Int32.Parse(System.Web.HttpContext.Current.Session["columna"].ToString());
             int filas = Int32.Parse(System.Web.HttpContext.Current.Session["fila"].ToString());
+            string apertura = System.Web.HttpContext.Current.Session["apertura"].ToString();
             int total = columnas * filas;
             string j1c1 = System.Web.HttpContext.Current.Session["j1c1"].ToString();
             string j1c2 = System.Web.HttpContext.Current.Session["j1c2"].ToString();
@@ -54,13 +55,6 @@ namespace Othello.Controllers
             string j2c3 = System.Web.HttpContext.Current.Session["j2c3"].ToString();
             string j2c4 = System.Web.HttpContext.Current.Session["j2c4"].ToString();
             string j2c5 = System.Web.HttpContext.Current.Session["j2c5"].ToString();
-            for (int i = 0; i < total; i++)
-            {
-                Pieza pieza = new Pieza(i);
-                listaGeneral.Add(pieza);
-                listaGeneral[i].Color = null;
-            }
-            turno = true;
             if (j1c1 == "Negro" || j1c1 == "Blanco" || j1c1 == "Azul" || j1c1 == "Rojo" || j1c1 == "Amarillo" || j1c1 == "Celeste" || j1c1 == "Verde" || j1c1 == "Violeta" || j1c1 == "Gris" || j1c1 == "Anaranjado")
             {
                 coloresJ1.Add(j1c1);
@@ -101,6 +95,983 @@ namespace Othello.Controllers
             {
                 coloresJ2.Add(j2c5);
             }
+            for (int i = 0; i < total; i++)
+            {
+                Pieza pieza = new Pieza(i);
+                listaGeneral.Add(pieza);
+                listaGeneral[i].Color = null;
+                var random1 = new Random();
+                var random2 = new Random();
+                int randomJ1 = random1.Next(coloresJ1.Count);
+                int randomJ2 = random2.Next(coloresJ2.Count);
+                //Acá validamos la columna y la fila que viene, si tiene el tipo de apertura normal hará las 50 y algo validaciones para cada combinación de tablero, si no simplemente se saltará el if
+                #region
+                if (apertura == "Normal")
+                {
+                    if (columnas == 6 && filas ==6)
+                    {
+                        if (i == 14 || i == 21)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 15 || i == 20)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 6 && filas == 8)
+                    {
+                        if (i == 20 || i == 27)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 21 || i == 26)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 6 && filas == 10)
+                    {
+                        if (i == 26 || i == 33)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 27 || i == 32)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 6 && filas == 12)
+                    {
+                        if (i == 32 || i == 39)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 33 || i == 38)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 6 && filas == 14)
+                    {
+                        if (i == 38 || i == 42)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 39 || i == 41)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 6 && filas == 16)
+                    {
+                        if (i == 44 || i == 51)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 45 || i == 50)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 6 && filas == 18)
+                    {
+                        if (i == 50 || i == 57)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 51 || i == 56)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 6 && filas == 20)
+                    {
+                        if (i == 56 || i == 63)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 57 || i == 62)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 8 && filas == 6)
+                    {
+                        if (i == 19 || i == 28)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 20 || i == 27)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 8 && filas == 8)
+                    {
+                        if (i == 27 || i == 36)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 28 || i == 35)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 8 && filas == 10)
+                    {
+                        if (i == 35 || i == 44)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 36 || i == 43)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 8 && filas == 12)
+                    {
+                        if (i == 43 || i == 52)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 44 || i == 51)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 8 && filas == 14)
+                    {
+                        if (i == 51 || i == 60)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 52 || i == 59)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 8 && filas == 16)
+                    {
+                        if (i == 59 || i == 68)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 60 || i == 67)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 8 && filas == 18)
+                    {
+                        if (i == 67 || i == 76)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 68 || i == 75)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 8 && filas == 20)
+                    {
+                        if (i == 75 || i == 84)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 76 || i == 83)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 10 && filas == 6)
+                    {
+                        if (i == 24 || i == 35)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 25 || i == 34)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 10 && filas == 8)
+                    {
+                        if (i == 34 || i == 45)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 35 || i == 44)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 10 && filas == 10)
+                    {
+                        if (i == 44 || i == 55)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 45 || i == 54)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 10 && filas == 12)
+                    {
+                        if (i == 54 || i == 65)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 55 || i == 64)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 10 && filas == 14)
+                    {
+                        if (i == 64 || i == 75)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 65 || i == 74)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 10 && filas == 16)
+                    {
+                        if (i == 74 || i == 85)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 75 || i == 84)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 10 && filas == 18)
+                    {
+                        if (i == 84 || i == 95)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 85 || i == 94)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 10 && filas == 20)
+                    {
+                        if (i == 94 || i == 105)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 95 || i == 104)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 12 && filas == 6)
+                    {
+                        if (i == 29 || i == 42)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 30 || i == 41)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 12 && filas == 8)
+                    {
+                        if (i == 41 || i == 54)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 42 || i == 53)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 12 && filas == 10)
+                    {
+                        if (i == 53 || i == 66)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 54 || i == 65)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 12 && filas == 12)
+                    {
+                        if (i == 65 || i == 78)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 66 || i == 77)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 12 && filas == 14)
+                    {
+                        if (i == 77 || i == 90)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 78 || i == 89)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 12 && filas == 16)
+                    {
+                        if (i == 89 || i == 102)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 90 || i == 101)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 12 && filas == 18)
+                    {
+                        if (i == 101 || i == 114)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 102 || i == 113)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 12 && filas == 20)
+                    {
+                        if (i == 113 || i == 126)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 114 || i == 125)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 14 && filas == 6)
+                    {
+                        if (i == 34 || i == 49)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 35 || i == 48)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 14 && filas == 8)
+                    {
+                        if (i == 48 || i == 63)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 49 || i == 62)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 14 && filas == 10)
+                    {
+                        if (i == 62 || i == 77)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 63 || i == 76)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 14 && filas == 12)
+                    {
+                        if (i == 76 || i == 91)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 77 || i == 90)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 14 && filas == 14)
+                    {
+                        if (i == 90 || i == 105)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 91 || i == 104)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 14 && filas == 16)
+                    {
+                        if (i == 104 || i == 119)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 105 || i == 118)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 14 && filas == 18)
+                    {
+                        if (i == 118 || i == 133)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 119 || i == 132)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 14 && filas == 20)
+                    {
+                        if (i == 132 || i == 147)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 133 || i == 146)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 16 && filas == 6)
+                    {
+                        if (i == 39 || i == 56)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 40 || i == 55)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 16 && filas == 8)
+                    {
+                        if (i == 55 || i == 72)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 56 || i == 71)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 16 && filas == 10)
+                    {
+                        if (i == 71 || i == 88)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 72 || i == 87)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 16 && filas == 12)
+                    {
+                        if (i == 87 || i == 104)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 88 || i == 103)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 16 && filas == 14)
+                    {
+                        if (i == 103 || i == 120)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 104 || i == 119)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 16 && filas == 16)
+                    {
+                        if (i == 119 || i == 136)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 120 || i == 135)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 16 && filas == 18)
+                    {
+                        if (i == 135 || i == 152)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 136 || i == 151)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 16 && filas == 20)
+                    {
+                        if (i == 151 || i == 168)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 152 || i == 167)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 18 && filas == 6)
+                    {
+                        if (i == 44 || i == 63)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 45 || i == 62)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 18 && filas == 8)
+                    {
+                        if (i == 62 || i == 81)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 63 || i == 80)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 18 && filas == 10)
+                    {
+                        if (i == 80 || i == 99)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 81 || i == 98)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 18 && filas == 12)
+                    {
+                        if (i == 98 || i == 117)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 99 || i == 116)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 18 && filas == 14)
+                    {
+                        if (i == 116 || i == 135)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 117 || i == 134)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 18 && filas == 16)
+                    {
+                        if (i == 134 || i == 153)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 135 || i == 152)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 18 && filas == 18)
+                    {
+                        if (i == 152 || i == 171)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 153 || i == 170)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 18 && filas == 20)
+                    {
+                        if (i == 170 || i == 189)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 171 || i == 188)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 20 && filas == 6)
+                    {
+                        if (i == 49 || i == 70)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 50 || i == 69)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 20 && filas == 8)
+                    {
+                        if (i == 69 || i == 90)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 70 || i == 89)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 20 && filas == 10)
+                    {
+                        if (i == 89 || i == 110)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 90 || i == 109)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 20 && filas == 12)
+                    {
+                        if (i == 109 || i == 130)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 110 || i == 129)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 20 && filas == 14)
+                    {
+                        if (i == 129 || i == 150)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 130 || i == 149)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 20 && filas == 16)
+                    {
+                        if (i == 149 || i == 170)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 150 || i == 169)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 20 && filas == 18)
+                    {
+                        if (i == 169 || i == 190)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 170 || i == 189)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                    else if (columnas == 20 && filas == 20)
+                    {
+                        if (i == 189 || i == 210)
+                        {
+                            listaGeneral[i].Color = coloresJ1[randomJ1];
+                        }
+                        else if (i == 190 || i == 209)
+                        {
+                            listaGeneral[i].Color = coloresJ2[randomJ2];
+                        }
+                        else
+                        {
+                            listaGeneral[i].Color = null;
+                        }
+                    }
+                }
+                #endregion
+            }
+            turno = true;
             return View(listaGeneral);
         }
         public ActionResult Redirect()
@@ -764,10 +1735,6 @@ namespace Othello.Controllers
             return View("Sala1", listaGeneral);
         }
 
-        public void validarColoresJ1(string io)
-        {
-
-        }
         public ActionResult CambioFichaXtream(string io)
         {
             string modoX = System.Web.HttpContext.Current.Session["modoX"].ToString();

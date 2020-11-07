@@ -134,6 +134,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PartidaController.cs" />
+    <Compile Include="Controllers\TorneoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Ficha.cs">
@@ -370,6 +371,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Juego\" />
     <Folder Include="Views\Profile\" />
+    <Folder Include="Views\Torneo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
