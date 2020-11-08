@@ -1897,14 +1897,18 @@ namespace Othello.Controllers
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "black";
+                            var Random1 = new Random();
+                            int RandomJ1 = Random1.Next(coloresJ1.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ1[RandomJ1];
                         }
                     }
                     else
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "white";
+                            var Random2 = new Random();
+                            int RandomJ2 = Random2.Next(coloresJ2.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ2[RandomJ2];
                         }
                     }
                 }
@@ -1919,13 +1923,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        if (coloresJ2.Contains(listaGeneral[noroeste].Color))
                         {
                             Pieza ficha = listaGeneral[noroeste];
                             listaFichasCambiar.Add(ficha);
                             noroeste = noroeste - 7;
                         }
-                        else if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ1.Contains(listaGeneral[noroeste].Color))
                         {
                             encierra = true;
                             break;
@@ -1937,13 +1941,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        if (coloresJ1.Contains(listaGeneral[noroeste].Color))
                         {
                             Pieza ficha = listaGeneral[noroeste];
                             listaFichasCambiar.Add(ficha);
                             noroeste = noroeste - 7;
                         }
-                        else if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ2.Contains(listaGeneral[noroeste].Color))
                         {
                             encierra = true;
                             break;
@@ -1960,14 +1964,18 @@ namespace Othello.Controllers
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "black";
+                            var Random1 = new Random();
+                            int RandomJ1 = Random1.Next(coloresJ1.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ1[RandomJ1];
                         }
                     }
                     else
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "white";
+                            var Random2 = new Random();
+                            int RandomJ2 = Random2.Next(coloresJ2.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ2[RandomJ2];
                         }
                     }
                 }
@@ -1982,13 +1990,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        if (coloresJ2.Contains(listaGeneral[oeste].Color))
                         {
                             Pieza ficha = listaGeneral[oeste];
                             listaFichasCambiar.Add(ficha);
                             oeste = oeste + 1;
                         }
-                        else if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ2.Contains(listaGeneral[oeste].Color))
                         {
                             encierra = true;
                             break;
@@ -2000,13 +2008,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        if (coloresJ1.Contains(listaGeneral[oeste].Color))
                         {
                             Pieza ficha = listaGeneral[oeste];
                             listaFichasCambiar.Add(ficha);
                             oeste = oeste + 1;
                         }
-                        else if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ2.Contains(listaGeneral[oeste].Color))
                         {
                             encierra = true;
                             break;
@@ -2023,14 +2031,18 @@ namespace Othello.Controllers
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "black";
+                            var Random1 = new Random();
+                            int RandomJ1 = Random1.Next(coloresJ1.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ1[RandomJ1];
                         }
                     }
                     else
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "white";
+                            var Random2 = new Random();
+                            int RandomJ2 = Random2.Next(coloresJ2.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ2[RandomJ2];
                         }
                     }
                 }
@@ -2045,13 +2057,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        if (coloresJ2.Contains(listaGeneral[suroeste].Color))
                         {
                             Pieza ficha = listaGeneral[suroeste];
                             listaFichasCambiar.Add(ficha);
                             suroeste = suroeste + 9;
                         }
-                        else if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ1.Contains(listaGeneral[suroeste].Color))
                         {
                             encierra = true;
                             break;
@@ -2063,13 +2075,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        if (coloresJ1.Contains(listaGeneral[suroeste].Color))
                         {
                             Pieza ficha = listaGeneral[suroeste];
                             listaFichasCambiar.Add(ficha);
                             suroeste = suroeste + 9;
                         }
-                        else if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ2.Contains(listaGeneral[suroeste].Color))
                         {
                             encierra = true;
                             break;
@@ -2086,14 +2098,18 @@ namespace Othello.Controllers
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "black";
+                            var Random1 = new Random();
+                            int RandomJ1 = Random1.Next(coloresJ1.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ1[RandomJ1];
                         }
                     }
                     else
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "white";
+                            var Random2 = new Random();
+                            int RandomJ2 = Random2.Next(coloresJ2.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ2[RandomJ2];
                         }
                     }
                 }
@@ -2108,13 +2124,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        if (coloresJ2.Contains(listaGeneral[sur].Color))
                         {
                             Pieza ficha = listaGeneral[sur];
                             listaFichasCambiar.Add(ficha);
                             sur = sur + 8;
                         }
-                        else if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ1.Contains(listaGeneral[sur].Color))
                         {
                             encierra = true;
                             break;
@@ -2126,13 +2142,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        if (coloresJ1.Contains(listaGeneral[sur].Color))
                         {
                             Pieza ficha = listaGeneral[sur];
                             listaFichasCambiar.Add(ficha);
                             sur = sur + 8;
                         }
-                        else if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ2.Contains(listaGeneral[sur].Color))
                         {
                             encierra = true;
                             break;
@@ -2149,14 +2165,18 @@ namespace Othello.Controllers
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "black";
+                            var Random1 = new Random();
+                            int RandomJ1 = Random1.Next(coloresJ1.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ1[RandomJ1];
                         }
                     }
                     else
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "white";
+                            var Random2 = new Random();
+                            int RandomJ2 = Random2.Next(coloresJ2.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ2[RandomJ2];
                         }
                     }
                 }
@@ -2171,13 +2191,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        if (coloresJ2.Contains(listaGeneral[sureste].Color))
                         {
                             Pieza ficha = listaGeneral[sureste];
                             listaFichasCambiar.Add(ficha);
                             sureste = sureste + 7;
                         }
-                        else if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ1.Contains(listaGeneral[sureste].Color))
                         {
                             encierra = true;
                             break;
@@ -2189,13 +2209,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        if (coloresJ1.Contains(listaGeneral[sureste].Color))
                         {
                             Pieza ficha = listaGeneral[sureste];
                             listaFichasCambiar.Add(ficha);
                             sureste = sureste + 7;
                         }
-                        else if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ2.Contains(listaGeneral[sureste].Color))
                         {
                             encierra = true;
                             break;
@@ -2212,14 +2232,18 @@ namespace Othello.Controllers
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "black";
+                            var Random1 = new Random();
+                            int RandomJ1 = Random1.Next(coloresJ1.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ1[RandomJ1];
                         }
                     }
                     else
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "white";
+                            var Random2 = new Random();
+                            int RandomJ2 = Random2.Next(coloresJ2.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ2[RandomJ2];
                         }
                     }
                 }
@@ -2234,13 +2258,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        if (coloresJ2.Contains(listaGeneral[este].Color))
                         {
                             Pieza ficha = listaGeneral[este];
                             listaFichasCambiar.Add(ficha);
                             este = este - 1;
                         }
-                        else if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ1.Contains(listaGeneral[este].Color))
                         {
                             encierra = true;
                             break;
@@ -2252,13 +2276,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        if (coloresJ1.Contains(listaGeneral[este].Color))
                         {
                             Pieza ficha = listaGeneral[este];
                             listaFichasCambiar.Add(ficha);
                             este = este - 1;
                         }
-                        else if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ2.Contains(listaGeneral[este].Color))
                         {
                             encierra = true;
                             break;
@@ -2275,14 +2299,18 @@ namespace Othello.Controllers
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "black";
+                            var Random1 = new Random();
+                            int RandomJ1 = Random1.Next(coloresJ1.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ1[RandomJ1];
                         }
                     }
                     else
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "white";
+                            var Random2 = new Random();
+                            int RandomJ2 = Random2.Next(coloresJ2.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ2[RandomJ2];
                         }
                     }
                 }
@@ -2297,13 +2325,13 @@ namespace Othello.Controllers
                 {
                     if (turno)
                     {
-                        if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        if (coloresJ2.Contains(listaGeneral[noreste].Color))
                         {
                             Pieza ficha = listaGeneral[noreste];
                             listaFichasCambiar.Add(ficha);
                             noreste = noreste - 9;
                         }
-                        else if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ1.Contains(listaGeneral[noreste].Color))
                         {
                             encierra = true;
                             break;
@@ -2315,13 +2343,13 @@ namespace Othello.Controllers
                     }
                     else
                     {
-                        if (coloresJ1.Contains(listaGeneral[norte].Color))
+                        if (coloresJ1.Contains(listaGeneral[noreste].Color))
                         {
                             Pieza ficha = listaGeneral[noreste];
                             listaFichasCambiar.Add(ficha);
                             noreste = noreste - 9;
                         }
-                        else if (coloresJ2.Contains(listaGeneral[norte].Color))
+                        else if (coloresJ2.Contains(listaGeneral[noreste].Color))
                         {
                             encierra = true;
                             break;
@@ -2338,14 +2366,18 @@ namespace Othello.Controllers
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "black";
+                            var Random1 = new Random();
+                            int RandomJ1 = Random1.Next(coloresJ1.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ1[RandomJ1];
                         }
                     }
                     else
                     {
                         for (int i = 0; i < listaFichasCambiar.Count; i++)
                         {
-                            listaGeneral[listaFichasCambiar[i].ID].Color = "white";
+                            var Random2 = new Random();
+                            int RandomJ2 = Random2.Next(coloresJ2.Count);
+                            listaGeneral[listaFichasCambiar[i].ID].Color = coloresJ2[RandomJ2];
                         }
                     }
                 }

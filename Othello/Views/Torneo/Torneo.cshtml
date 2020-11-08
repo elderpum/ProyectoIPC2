@@ -1,0 +1,121 @@
+﻿@model List<Othello.Models.Pieza>
+@{
+    Layout = null;
+    int contador = 0;
+    string[] letras = { "A", "B", "C", "D", "E", "F", "G", "H" };
+    string nombreJ1N = System.Web.HttpContext.Current.Session["login"].ToString();
+    TempData["empezar"] = DateTime.Now.TimeOfDay;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Sala de Torneo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Stock/OthelloIcon.png" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Tablero.css" />
+</head>
+<body>
+    <div class="row justify-content-center">
+        <div class="col-10 col-sm-5 col-md-12 bg-dark border-danger">
+            <p class="h6 text-center">PARTIDA JUGADOR VS IA</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col" id="Tablero">
+            @using (Html.BeginForm(actionName: "CambioFicha", controllerName: "Torneo"))
+            {
+                <div id="fila">
+                    <div class="caja-transparente"></div>
+                    @{
+                        for (int i = 1; i < 9; i++)
+                        {
+                            <div class="caja-decorativa">@i</div>
+                        }
+                    }
+                    <div class="caja-transparente"></div>
+                </div>
+
+                <div class="fila">
+                    @{
+                        for (int i = 0; i < letras.Length; i++)
+                        {
+                            <div class="caja-decorativa">@letras[i]</div>
+                            for (int j = 0; j < 8; j++)
+                            {
+
+                                <button type="submit" value="@contador" class="caja" name="io">
+                                    <div class="inside @Model[contador].Color"></div>
+                                </button>
+
+                                contador++;
+                            }
+                            <div class="caja-decorativa">@letras[i]</div>
+                        }
+                    }
+                </div>
+
+                <div id="fila">
+                    <div class="caja-transparente"></div>
+                    @{
+                        for (int i = 1; i < 9; i++)
+                        {
+                            <div class="caja-decorativa">@i</div>
+                        }
+                    }
+                    <div class="caja-transparente"></div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="row justify-content-lg-end" id="ControlDiv" style="margin-top:100px; margin-right: 50px;">
+        <div class="col-10 col-sm-10 col-md-5 bg-dark border-danger">
+            <p class="h6 text-center">Control de Partida</p>
+            <br />
+            <br />
+            <div style="overflow: hidden;">
+                <p class="h6 text-left" style="float:left;">Negro</p>
+                <p class="h6 text-left" style="float:right; margin-right:10px;">Blanco</p>
+            </div>
+            <div style="overflow: hidden;">
+                <div class="caja" style="float:left;">
+                    <div class="inside black"></div>
+                </div>
+
+                <div class="caja" style="float:right;">
+                    <div class="inside white"></div>
+                </div>
+            </div>
+
+            <div style="overflow: hidden;">
+                <p class="h6 text-left" style="float:left;">@ViewBag.contadorNegras</p>
+                <p class="h6 text-left" style="float:right; margin-right:10px;">@ViewBag.contadorBlancas</p>
+            </div>
+
+            <div style="overflow: hidden;">
+                <p class="h6 text-left" style="float:left;">@nombreJ1N</p>
+                <p class="h6 text-left" style="float:right; margin-right:10px;">Invitado</p>
+            </div>
+
+            <div style="overflow: hidden;">
+                <p class="h6 text-left" style="float:left;">@ViewBag.CronometroNegro</p>
+                <p class="h6 text-left" style="float:right; margin-right:10px;">@ViewBag.CronometroBlanco</p>
+            </div>
+
+            <p class="h6 text-center">@ViewBag.Ganador</p>
+            @using (Html.BeginForm(actionName: "CargarArchivo", controllerName: "Torneo"))
+            {
+                <a href="~/Menu/Inicio" class="btn btn-primary btn-block">Regresar al Menú</a>
+            }
+        </div>
+    </div>
+</body>
+</html>

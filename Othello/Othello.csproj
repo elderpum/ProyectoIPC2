@@ -366,12 +366,12 @@
     <Content Include="Views\Partida\OthelloXtream.cshtml" />
     <Content Include="Views\Menu\PreOthello.cshtml" />
     <Content Include="Views\Menu\PreOthelloXtream.cshtml" />
+    <Content Include="Views\Torneo\Torneo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Juego\" />
     <Folder Include="Views\Profile\" />
-    <Folder Include="Views\Torneo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
